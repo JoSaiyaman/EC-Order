@@ -22,8 +22,8 @@ import {
 } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
 // import axios from 'axios';
-import light from './Common/lightMode';
-import dark from './Common/DarkMode';
+import light from '../Common/lightMode';
+import dark from '../Common/DarkMode';
 
 export default class HomeScreen extends React.Component {
   constructor(props) {
@@ -122,6 +122,13 @@ export default class HomeScreen extends React.Component {
         <View >
           <ScrollView>
             <View style={estilos.opcion}>
+            </View>
+            <View style={estilos.opcion}>
+              <TouchableOpacity style={[estilos.botonMenu,{backgroundColor: 'rgb(122,121,225)'}]} onPress={() => {
+              Actions.admin_menu('1')
+              }}>
+                <Text  style={estilos.botonMenuText}> Modificar Menu </Text>
+              </TouchableOpacity>
             </View>
             <View style={estilos.opcion}>
               <TouchableOpacity style={[estilos.botonMenu,{backgroundColor: 'rgb(112,151,245)'}]}>

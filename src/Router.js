@@ -12,7 +12,8 @@ import {
 import AsyncStorage from '@react-native-community/async-storage';
 
 import Login from './components/Login';
-import HomeScreen from './components/HomeScreen';
+import HomeScreen from './components/admin/HomeScreen';
+import adminMenu from './components/admin/adminMenu';
 
 export default class RouterComponent extends React.Component {
     constructor(props) {
@@ -67,7 +68,7 @@ export default class RouterComponent extends React.Component {
                     break;
             }
             global.skip = false;
-            Actions.main()
+            Actions.admin()
         }
     }
 
@@ -115,7 +116,7 @@ export default class RouterComponent extends React.Component {
 
                 
                 <Stack
-                    key="main"
+                    key="admin"
                     type="reset"
                     style={style.titleStyle}
                 >
@@ -125,6 +126,11 @@ export default class RouterComponent extends React.Component {
                         key="home_screen"
                         component={HomeScreen}
                         initial                        
+                    />
+                    <Scene
+                        title="Configuración de Menú"
+                        key="admin_menu"
+                        component={adminMenu}          
                     />
 
 

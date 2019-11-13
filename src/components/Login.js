@@ -63,7 +63,10 @@ class Login extends Component {
       axios
       .post('/auth/login/', payload)
       .then(response => {
-        Actions.main();
+        const token = response.data.token;
+        axios.defaults.headers.common.Authorization = `Token ${token}`;
+        console.log(token)
+        Actions.admin();
         this.setUserId(payload.username);
       })
       .catch(error => {
@@ -111,7 +114,6 @@ class Login extends Component {
 
     const {
       formContainerStyle,
-      fieldStyle,
       buttonContainerStyle,
       viewFontLogin
     } = style;
@@ -142,7 +144,7 @@ class Login extends Component {
                   <View style = {viewFontLogin}>
                     <Text style = {estilos.fontLogin}>Usuario</Text>
                   </View>
-                  <View style={fieldStyle}>
+                  <View style={estilos.fieldStyle}>
                     <TextInput
                       autoCorrect={false}
                       autoCapitalize="none"
@@ -152,7 +154,7 @@ class Login extends Component {
                     />
                   </View>
                   <View style = {viewFontLogin}><Text style = {estilos.fontLogin}>Contraseña</Text></View>
-                  <View style={fieldStyle}>
+                  <View style={estilos.fieldStyle}>
                     <TextInput
                       secureTextEntry
                       autoCapitalize="none"
@@ -185,10 +187,6 @@ const style = StyleSheet.create({
   viewFontLogin: {
     width: 300,
     alignItems: 'flex-start'
-  },
-  fieldStyle: {
-    flexDirection: 'row',
-    justifyContent: 'center'
   },
   buttonContainerStyle: {
     flex: 1,

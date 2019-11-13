@@ -40,6 +40,10 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     margin:5
   },
+  fieldStyle: {
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
 
   // drawer: {
   //   justifyContent: 'space-between'
@@ -114,7 +118,7 @@ export default StyleSheet.create({
     elevation: 1
   },
 
-  // Menu
+  // Main Menu
   profilepicWrap:{
     marginTop:1,
     width: 180,
@@ -145,5 +149,22 @@ export default StyleSheet.create({
     color:'#fff',
     fontSize: 18,
     fontWeight: 'bold',
-  }
+  },
+
+  // Menu (de comida xd)
+  
+  columna1: {
+    flex: 0,
+    width: "10%",
+    height: undefined,
+    // alignSelf: 'flex-end',
+    justifyContent: 'flex-start'
+  },
+  columna2: {
+    flex: 0,
+    width: "90%",
+    height: undefined,
+    // alignSelf: 'flex-end',
+    justifyContent: 'flex-start'
+  },
 });
