@@ -125,7 +125,7 @@ export default class HomeScreen extends React.Component {
             </View>
             <View style={estilos.opcion}>
               <TouchableOpacity style={[estilos.botonMenu,{backgroundColor: 'rgb(122,121,225)'}]} onPress={() => {
-              Actions.admin_menu('1')
+              Actions.admin_menu()
               }}>
                 <Text  style={estilos.botonMenuText}> Modificar Menu </Text>
               </TouchableOpacity>

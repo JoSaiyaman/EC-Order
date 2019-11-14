@@ -150,19 +150,24 @@ export default StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
+  tabMenu:{
+    padding: 17,
+    alignItems: 'center',
+    borderRadius: 20,
+  },
 
   // Menu (de comida xd)
   
   columna1: {
     flex: 0,
-    width: "10%",
+    width: "13%",
     height: undefined,
-    // alignSelf: 'flex-end',
+    alignItems: 'flex-start',
     justifyContent: 'flex-start'
   },
   columna2: {
     flex: 0,
-    width: "90%",
+    width: "87%",
     height: undefined,
     // alignSelf: 'flex-end',
     justifyContent: 'flex-start'

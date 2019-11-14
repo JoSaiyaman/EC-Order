@@ -149,6 +149,11 @@ export default StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
+  tabMenu:{
+    padding: 13,
+    alignItems: 'center',
+    borderRadius: 20,
+  },
 
   // Menu (de comida xd)
   
@@ -156,7 +161,7 @@ export default StyleSheet.create({
     flex: 0,
     width: "10%",
     height: undefined,
-    // alignSelf: 'flex-end',
+    alignItems: 'flex-start',
     justifyContent: 'flex-start'
   },
   columna2: {
