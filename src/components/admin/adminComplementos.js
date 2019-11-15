@@ -25,12 +25,13 @@ import { Actions } from 'react-native-router-flux';
 import axios from 'axios';
 import light from '../Common/lightMode';
 import dark from '../Common/DarkMode';
+import { thisExpression } from '@babel/types';
+import { array } from 'prop-types';
 
 let nuevoComplemento = <React.Fragment></React.Fragment>;
 export default class adminComplementos extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
         description: '',
         price: '',
@@ -38,7 +39,9 @@ export default class adminComplementos extends React.Component {
         received_data: this.props.data,
         id_articulo: '',
         name_articulo:'',
-        complements_articulo:[]
+        complements_articulo:[],
+        complements_id: [],
+        selectedComplements_id: []
     };
   }
 
@@ -54,7 +57,17 @@ export default class adminComplementos extends React.Component {
   }
 
   guardarCambios(){
-    Alert.alert("Guardar Cambios")
+    let url_guardar_cambios = '/restaurant/menu/article/' + this.state.received_data + '/complements/'
+    let parametros ={
+      "complements": this.state.selectedComplements_id
+    }
+    axios.put(url_guardar_cambios, parametros
+      ).then(response => {
+        Alert.alert("Atención","Complementos actualizados.");
+        Actions.pop({ refresh: {key: Math.random()} });
+      })
+      .catch(error => Alert.alert("Atención","Hubo un error. Los datos no fueron actualizados."));
+    console.log(parametros)
   }
 
   nuevoComplemento(){
@@ -102,24 +115,70 @@ export default class adminComplementos extends React.Component {
     this.nuevoComplementoVisible();
   };
 
-  renderSection(contenido){
+  quitarDelArray(arr){
+    var what, a = arguments, L = a.length, ax;
+    while (L > 1 && array.length){
+      what = a[--L];
+      while ((ax=arr.indexOf(what)) !== -1){
+        arr.splice(ax,1);
+      }
+    }
+    return(arr)
+  }
+
+  activarComplemento(id){
+    let {selectedComplements_id} = {...this.state}
+    selectedComplements_id.push(id);
+    this.setState(selectedComplements_id)
+  }
+
+  desactivarComplemento(id){
+    let {selectedComplements_id} = {...this.state}
+    selectedComplements_id = this.quitarDelArray(selectedComplements_id, id);
+    this.setState(selectedComplements_id)
+  }
+
+  renderComplemento(contenido){
     let estilos = this.estilo()
-    let id = contenido.item.id
+
+    console.log("==========arreglo de complementos")
+    console.log(this.state.complements_id)
+    console.log("==========arreglo de complementos del artíuclo")
+    console.log(this.state.selectedComplements_id)
+
+    let complement_id = contenido.item.id
     if (contenido.item.is_active && contenido.item.is_available){
-      return (
-        <TouchableOpacity
-          style={estilos.articulo}
-          onPress={() => {
-            console.log(id)
-          }}
-        >
-         <View style={{flexDirection: 'row'}}>
-            <View style={{flex:1, margin:5}}>
-              <Text style = {{fontWeight: "bold"}} >{contenido.item.description} - ${contenido.item.price}</Text>
-            </View> 
-          </View>
-        </TouchableOpacity>
-      );
+      if(this.state.selectedComplements_id.includes(complement_id)){
+        return (
+          <TouchableOpacity
+            style={estilos.articulo}
+            onPress={() => {
+              this.desactivarComplemento(complement_id)
+            }}
+          >
+           <View style={{flexDirection: 'row'}}>
+              <View style={{flex:1, margin:5}}>
+                <Text style = {estilos.complementSelect} >{contenido.item.description} - ${contenido.item.price}</Text>
+              </View> 
+            </View>
+          </TouchableOpacity>
+        );
+      }else{
+        return (
+          <TouchableOpacity
+            style={estilos.articulo}
+            onPress={() => {
+              this.activarComplemento(complement_id)
+            }}
+          >
+           <View style={{flexDirection: 'row'}}>
+              <View style={{flex:1, margin:5}}>
+                <Text style = {estilos.complementNoSelect} >{contenido.item.description} - ${contenido.item.price}</Text>
+              </View> 
+            </View>
+          </TouchableOpacity>
+        );
+      }
     }
   }
 
@@ -127,8 +186,13 @@ export default class adminComplementos extends React.Component {
     nuevoComplemento = <React.Fragment></React.Fragment>;
     axios.get('/restaurant/menu/complement/'
      ).then(response => {
+       let complements_id = []
+      for(let i = 0; i < response.data.length; i++){
+         complements_id.push(response.data[i].id)
+       }
         this.setState({
-            complements: response.data
+            complements: response.data, 
+            complements_id
         });
      })
      .catch(error =>  console.log(error));
@@ -138,13 +202,20 @@ export default class adminComplementos extends React.Component {
     console.log(base_url_section)
     axios.get(base_url_section
      ).then(response => {
+      let selectedComplements_id = []
+      for(let i = 0; i < response.data.complements.length; i++){
+        selectedComplements_id.push(response.data.complements[i].id)
+      }
         this.setState({
             id_articulo: response.data.id,
             name_articulo: response.data.name,
             complements_articulo: response.data.complements,
+            selectedComplements_id
         });
      })
      .catch(error =>  console.log(error));
+
+     
   }
 
   render() {
@@ -164,7 +235,7 @@ export default class adminComplementos extends React.Component {
     return ( 
         <View style = {{flex: 1}}>
             <View style={estilos.container} >
-                <Text style = {estilos.titulo1}>{} </Text>
+                <Text style = {estilos.titulo2}>Complementos para {this.state.name_articulo}</Text>
                 <View style = {{flexDirection: 'row'}}>
                     <View style={[estilos.fieldStyle, {paddingLeft: 20, paddingVertical: 20, paddingRight: 10, width:'65%'}]}>
                         <TextInput
@@ -192,14 +263,14 @@ export default class adminComplementos extends React.Component {
                         <FlatList
                         data={complementos}
                         keyExtractor= {(item, index) => complementos + index.toString()}
-                        renderItem={this.renderSection.bind(this)}
+                        renderItem={this.renderComplemento.bind(this)}
                         />
                     </View>
-                    <TouchableOpacity style={[estilos.tabMenu,estilos.colorBotonesAccion]} 
-                                      onPress={() => this.guardarCambios()}>
-                        <Text style={estilos.botonMenuText}>Guardar Cambios</Text>
-                    </TouchableOpacity>
                 </ScrollView>
+                <TouchableOpacity style={[estilos.tabMenu,estilos.colorBotonesAccion,{margin: 15}]} 
+                                  onPress={() => this.guardarCambios()}>
+                    <Text style={estilos.botonMenuText}>Guardar Cambios</Text>
+                </TouchableOpacity>
             </View>
         </View>
     );

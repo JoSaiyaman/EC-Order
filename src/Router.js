@@ -16,6 +16,7 @@ import HomeScreen from './components/admin/HomeScreen';
 import adminMenu from './components/admin/adminMenu';
 import adminDetalleArticulo from './components/admin/adminDetalleArticulo';
 import adminComplementos from './components/admin/adminComplementos';
+import adminNuevoArticulo from './components/admin/adminNuevoArticulo';
 
 export default class RouterComponent extends React.Component {
     constructor(props) {
@@ -143,6 +144,11 @@ export default class RouterComponent extends React.Component {
                         title="Complementos"
                         key="admin_complementos"
                         component={adminComplementos}          
+                    />
+                    <Scene
+                        title="Nuevo Artículo"
+                        key="admin_nuevo_articulo"
+                        component={adminNuevoArticulo}          
                     />
 
 

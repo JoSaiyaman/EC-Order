@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 let ColorFuerte = 'rgb(255,74,55)';
 let ColorDebil = 'rgb(255,255,141)';
 let ColorDebilOscuro = 'rgb(230,230,141)';
+let ColorAzul = 'rgb(122,121,225)';
 
 export default StyleSheet.create({
   loginBackground: {
@@ -157,7 +158,7 @@ export default StyleSheet.create({
     fontWeight: 'bold',
   },
   tabMenu:{
-    padding: 17,
+    padding: 18,
     alignItems: 'center',
     borderRadius: 20,
   },
@@ -223,4 +224,11 @@ export default StyleSheet.create({
     textAlign: 'center',
     fontSize: 16
   },
+  complementNoSelect: {
+    fontWeight: "bold"
+  },
+  complementSelect:{
+    fontWeight: "bold",
+    color: ColorAzul
+  }
 });

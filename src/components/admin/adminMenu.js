@@ -29,6 +29,7 @@ import dark from '../Common/DarkMode';
 let contentRender = <React.Fragment><Text>
     </Text></React.Fragment>;
 let botonGuardar = <React.Fragment></React.Fragment>;
+var nuevo = false;
 export default class adminMenu extends React.Component {
   constructor(props) {
     super(props);
@@ -60,12 +61,21 @@ export default class adminMenu extends React.Component {
   onSectionNameChange(text){
     let estilos = this.estilo()
     this.setState({ sectionName: text });
-    botonGuardar = <React.Fragment>
-      <TouchableOpacity style={[estilos.tabMenu,estilos.colorBotonesAccion]} 
-                        onPress={() => this.guardarCambios()}>
-        <Text style={estilos.botonMenuText}>Guardar Cambios</Text>
-      </TouchableOpacity>
-    </React.Fragment>
+    if(nuevo){
+      botonGuardar = <React.Fragment>
+        <TouchableOpacity style={[estilos.tabMenu,estilos.colorBotonesAccion]} 
+                          onPress={() => this.crearSeccion()}>
+          <Text style={estilos.botonMenuText}>Crear Seccion</Text>
+        </TouchableOpacity>
+      </React.Fragment>
+    }else{
+      botonGuardar = <React.Fragment>
+        <TouchableOpacity style={[estilos.tabMenu,estilos.colorBotonesAccion]} 
+                          onPress={() => this.guardarCambios()}>
+          <Text style={estilos.botonMenuText}>Guardar Cambios</Text>
+        </TouchableOpacity>
+      </React.Fragment>
+    }
   };
 
   renderTabs(seccion){
@@ -116,8 +126,11 @@ export default class adminMenu extends React.Component {
 
   changeSection(articulos){
     let estilos = this.estilo()
-    console.log("=========Change Section =============")
+    console.log("=========id section =============")
     console.log(articulos)
+
+    nuevo = false;
+    let section_id = articulos.id;
     botonGuardar = <React.Fragment></React.Fragment>;
     contentRender = <React.Fragment>
       <View>
@@ -127,7 +140,10 @@ export default class adminMenu extends React.Component {
           renderItem={this.renderSection.bind(this)}
         />
         <Text></Text>
-        <TouchableOpacity style={[estilos.tabMenu,estilos.colorBotonesAccion]}>
+        <TouchableOpacity style={[estilos.tabMenu,estilos.colorBotonesAccion]}
+          onPress={() => {
+            Actions.admin_nuevo_articulo(section_id)
+        }}>
           <Text style={estilos.botonMenuText}>+ Agregar artículo de menú</Text>
         </TouchableOpacity>
       </View>
@@ -137,6 +153,7 @@ export default class adminMenu extends React.Component {
   }
 
   componentDidMount() {
+    nuevo = false;
     contentRender = <React.Fragment> 
       <Text>Mensaje de Bienvenida</Text> 
       </React.Fragment>;
@@ -148,6 +165,31 @@ export default class adminMenu extends React.Component {
         });
      })
      .catch(error =>  console.log(error));
+  }
+
+  crearSeccion(){
+    let parms = {
+      "description": this.state.sectionName
+    }
+    if(this.state.sectionName != ''){
+      axios.post('/restaurant/menu/section/', parms
+        ).then(response => {
+           Alert.alert("Atención","Artículo actualizado")
+           Actions.refresh({ key: Math.random() });
+        })
+        .catch(error => Alert.alert("Atención","Hubo un error. Los datos no fueron actualizados."));
+    } else {
+        Alert.alert("Atención","Se requiere un nombre para la sección.")
+    }
+  }
+
+  nuevaSeccion(){
+    nuevo = true;    
+    botonGuardar = <React.Fragment></React.Fragment>;
+    contentRender = <React.Fragment> 
+      <Text></Text> 
+      </React.Fragment>;
+    this.setState({sectionName: ''})
   }
 
   render() {
@@ -163,7 +205,8 @@ export default class adminMenu extends React.Component {
                 keyExtractor= {(item, index) => seccion + index.toString()}
                 renderItem={this.renderTabs.bind(this)}
               />
-              <TouchableOpacity style={[estilos.tabMenu,estilos.colorBotonesAccion]}>
+              <TouchableOpacity style={[estilos.tabMenu,estilos.colorBotonesAccion]} 
+                        onPress={() => this.nuevaSeccion()}>
                   <Text style={estilos.botonMenuText}>+</Text>
               </TouchableOpacity>
             </View>
