@@ -84,32 +84,41 @@ class Login extends Component {
     this.setState({ password: text });
   }
 
+  estilo(){
+    switch (global.style){
+      case 'light':
+        return(light);
+      case 'dark':
+        return(dark);
+      default:
+        return(light);
+    }
+  }
+
   renderButton() {
+    let estilos = this.estilo()
     return (
       <Button title={"Login"} 
-      buttonStyle={{backgroundColor: 'rgb(255,74,55)', width:130, elevation: 1}} 
+      buttonStyle={[estilos.colorBotonesAccion,{ width:130, elevation: 1}]} 
       onPress={this.handleRequest.bind(this)}/>  
     );
   }
 
   render() {
-    let estilos;
+    let estilos = this.estilo()
     let bgimage;
     // console.log("GLOBAL STYLE => "+ global.style)
     // switch (global.style){
-    switch ('light'){
-    case 'light':
-      estilos = light;
-      bgimage = require('../../assets/images/yellow_forked_background.png')
-      break;
-    case 'dark':
-      estilos = dark;
-      bgimage = require('../../assets/images/yellow_squared_background.png')
-      break;
-    default:
-      estilos = light;
-      bgimage = require('../../assets/images/yellow_forked_background.png')
-      break; 
+      switch('light'){
+      case 'light':
+        bgimage = require('../../assets/images/yellow_forked_background.png')
+        break;
+      case 'dark':
+        bgimage = require('../../assets/images/yellow_squared_background.png')
+        break;
+      default:
+        bgimage = require('../../assets/images/yellow_forked_background.png')
+        break; 
     }
 
     const {

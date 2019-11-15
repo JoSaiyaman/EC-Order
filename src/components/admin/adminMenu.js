@@ -28,6 +28,7 @@ import dark from '../Common/DarkMode';
 
 let contentRender = <React.Fragment><Text>
     </Text></React.Fragment>;
+let botonGuardar = <React.Fragment></React.Fragment>;
 export default class adminMenu extends React.Component {
   constructor(props) {
     super(props);
@@ -52,25 +53,28 @@ export default class adminMenu extends React.Component {
     }
   }
 
+  guardarCambios(){
+    Alert.alert("Alert")
+  }
+
   onSectionNameChange(text){
+    let estilos = this.estilo()
     this.setState({ sectionName: text });
+    botonGuardar = <React.Fragment>
+      <TouchableOpacity style={[estilos.tabMenu,estilos.colorBotonesAccion]} 
+                        onPress={() => this.guardarCambios()}>
+        <Text style={estilos.botonMenuText}>Guardar Cambios</Text>
+      </TouchableOpacity>
+    </React.Fragment>
   };
 
   renderTabs(seccion){
     let estilos = this.estilo()
     // console.log(seccion.item.is_active)
     if(seccion.item.is_active){
-      if(this.state.first_section){
-        this.setState({
-          first_section: false,
-          sectionName: seccion.item.description,
-          current_section: seccion.item.id
-        });
-      }
       return(
       <TouchableOpacity style={[estilos.tabMenu,{backgroundColor: 'rgb(122,121,225)'}]} onPress={() => {
-        // this.changeSection(seccion.item.menuarticle_set)
-        this.changeSection(seccion.item.id)
+        this.changeSection(seccion.item)
         this.forceUpdate()
         }}>
           <Text style={estilos.botonMenuText}>{seccion.item.description}</Text>
@@ -78,15 +82,64 @@ export default class adminMenu extends React.Component {
       );
     }
   }
+
+  renderSection(contenido){
+    let estilos = this.estilo()
+    let imagen_url;
+    if(contenido.item.menuarticleimage_set.length > 0){
+      imagen_url = contenido.item.menuarticleimage_set[0].image
+    }else{
+      imagen_url = ''
+    }
+    if (contenido.item.is_active && contenido.item.is_available){
+      return (
+        <TouchableOpacity
+          style={estilos.articulo}
+          onPress={() => {
+            Actions.admin_detalle_articulo(contenido.item)
+            this.setState({ state: this.state });
+          }}
+        >
+         <View style={{flexDirection: 'row'}}>
+            <Image source={{uri: imagen_url}} style={{width: 45, height: 45}}/>
+            <View style={{flex:1, margin:5}}>
+              <Text style = {{fontWeight: "bold"}} >{contenido.item.name} - ${contenido.item.price}</Text>
+              <Text>{contenido.item.description}</Text>                  
+              <View style={{ flex: 1 }}>
+              </View>
+            </View> 
+          </View>
+        </TouchableOpacity>
+      );
+    }
+  }
+
   changeSection(articulos){
+    let estilos = this.estilo()
     console.log("=========Change Section =============")
     console.log(articulos)
-    contentRender = <React.Fragment><Text>
-      {articulos}</Text></React.Fragment>;
-    this.setState(this.state);
+    botonGuardar = <React.Fragment></React.Fragment>;
+    contentRender = <React.Fragment>
+      <View>
+        <FlatList
+          data={articulos.menuarticle_set}
+          keyExtractor= {(item, index) => articulos.menuarticle_set + index.toString()}
+          renderItem={this.renderSection.bind(this)}
+        />
+        <Text></Text>
+        <TouchableOpacity style={[estilos.tabMenu,estilos.colorBotonesAccion]}>
+          <Text style={estilos.botonMenuText}>+ Agregar artículo de menú</Text>
+        </TouchableOpacity>
+      </View>
+      </React.Fragment>;
+      // console.log(articulos.item.description)
+    this.setState({sectionName: articulos.description});
   }
 
   componentDidMount() {
+    contentRender = <React.Fragment> 
+      <Text>Mensaje de Bienvenida</Text> 
+      </React.Fragment>;
     const base_url_section = '/restaurant/menu/';
     axios.get(base_url_section
      ).then(response => {
@@ -101,17 +154,16 @@ export default class adminMenu extends React.Component {
     let estilos = this.estilo()
     
     const seccion = this.state.full_menu.menusection_set;
-    console.log(contentRender)
     
     return ( 
         <View style = {{flexDirection: 'row', flex: 1}}>
-            <View style={[estilos.columna1,estilos.container]}>
+            <View style={[estilos.columna1,estilos.container2]}>
               <FlatList
                 data={seccion}
                 keyExtractor= {(item, index) => seccion + index.toString()}
                 renderItem={this.renderTabs.bind(this)}
               />
-              <TouchableOpacity style={[estilos.tabMenu,{backgroundColor: 'rgb(122,121,225)'}]}>
+              <TouchableOpacity style={[estilos.tabMenu,estilos.colorBotonesAccion]}>
                   <Text style={estilos.botonMenuText}>+</Text>
               </TouchableOpacity>
             </View>
@@ -125,34 +177,10 @@ export default class adminMenu extends React.Component {
                             style={estilos.login_textInputStyle}
                             value={this.state.sectionName}
                         />
-                        {contentRender}
                     </View>
-                    <ScrollView>
-                        <View style={estilos.opcion}>
-                        <TouchableOpacity style={[estilos.botonMenu,{backgroundColor: 'rgb(122,121,225)'}]}>
-                            <Text  style={estilos.botonMenuText}> Modificar Menu </Text>
-                        </TouchableOpacity>
-                        </View>
-                        <View style={estilos.opcion}>
-                        <TouchableOpacity style={[estilos.botonMenu,{backgroundColor: 'rgb(112,151,245)'}]}>
-                            <Text  style={estilos.botonMenuText}> Manejar restaurante </Text>
-                        </TouchableOpacity>
-                        </View>
-                        <View style={estilos.opcion}>
-                        <TouchableOpacity style={[estilos.botonMenu,{backgroundColor: 'rgb(68,114,196)'}]}>
-                            <Text  style={estilos.botonMenuText}> Manejar espacios </Text>
-                        </TouchableOpacity>
-                        </View>
-                        <View style={estilos.opcion}>
-                        <TouchableOpacity style={[estilos.botonMenu,{backgroundColor: 'rgb(0,32,96)'}]}>
-                            <Text  style={estilos.botonMenuText}> Manejar puestos </Text>
-                        </TouchableOpacity>
-                        </View>
-                        <View style={estilos.opcion}>
-                        <TouchableOpacity style={[estilos.botonMenu,{backgroundColor: 'rgb(45,203,37)'}]}>
-                            <Text  style={estilos.botonMenuText}> Reportes </Text>
-                        </TouchableOpacity>
-                        </View>
+                    <ScrollView style = {[estilos.ScrollContainer,{padding: 10}]} contentContainerStyle={estilos.contentContainer}>
+                      {contentRender}
+                      {botonGuardar}
                     </ScrollView>
                 </View>
             </View>

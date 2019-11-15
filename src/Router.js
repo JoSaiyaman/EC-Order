@@ -14,6 +14,8 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Login from './components/Login';
 import HomeScreen from './components/admin/HomeScreen';
 import adminMenu from './components/admin/adminMenu';
+import adminDetalleArticulo from './components/admin/adminDetalleArticulo';
+import adminComplementos from './components/admin/adminComplementos';
 
 export default class RouterComponent extends React.Component {
     constructor(props) {
@@ -131,6 +133,16 @@ export default class RouterComponent extends React.Component {
                         title="Configuración de Menú"
                         key="admin_menu"
                         component={adminMenu}          
+                    />
+                    <Scene
+                        title="Configuración de Artículo"
+                        key="admin_detalle_articulo"
+                        component={adminDetalleArticulo}          
+                    />
+                    <Scene
+                        title="Complementos"
+                        key="admin_complementos"
+                        component={adminComplementos}          
                     />
 
 

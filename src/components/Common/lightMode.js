@@ -2,6 +2,7 @@ import { StyleSheet } from 'react-native';
 
 let ColorFuerte = 'rgb(255,74,55)';
 let ColorDebil = 'rgb(255,255,141)';
+let ColorDebilOscuro = 'rgb(230,230,141)';
 
 export default StyleSheet.create({
   loginBackground: {
@@ -59,6 +60,11 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: ColorDebil,
+    justifyContent: "space-around"
+  },
+  container2: {
+    flex: 1,
+    backgroundColor: ColorDebilOscuro,
     justifyContent: "space-around"
   },
   header:{
@@ -155,6 +161,9 @@ export default StyleSheet.create({
     alignItems: 'center',
     borderRadius: 20,
   },
+  colorBotonesAccion:{
+    backgroundColor: ColorFuerte
+  },
 
   // Menu (de comida xd)
   
@@ -171,5 +180,47 @@ export default StyleSheet.create({
     height: undefined,
     // alignSelf: 'flex-end',
     justifyContent: 'flex-start'
+  },
+  articulo: {
+    borderBottomWidth: 0.5,
+    borderColor: 'rgba(0,0,0,0.7)',
+    padding: 10
+  },
+
+  // detalle de producto
+  
+  titulo1:{
+    alignItems: 'center',
+    textAlign: 'center',
+    justifyContent: 'center',
+    fontWeight: 'bold',
+    fontSize: 22,
+  },
+  titulo2:{
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+  subtitulo1:{
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+  contenido:{
+    flex: 1,
+    padding: 6,
+    fontSize: 16,
+  },
+  descriptionArea: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 20
+  },
+  descriptionText: {
+    color: 'grey',
+    fontStyle: 'italic',
+    textAlign: 'center',
+    fontSize: 16
   },
 });
