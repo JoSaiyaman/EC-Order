@@ -102,7 +102,7 @@ export default class adminDetalleArticulo extends React.Component {
   botonGuardarVisible(){
     let estilos = this.estilo()
     botonGuardar = <React.Fragment>
-      <TouchableOpacity style={[estilos.tabMenu,estilos.colorBotonesAccion]} 
+      <TouchableOpacity style={[estilos.botonMenu,estilos.colorBotonesAccion]} 
                         onPress={() => this.guardarCambios()}>
         <Text style={estilos.botonMenuText}>Guardar Cambios</Text>
       </TouchableOpacity>
@@ -196,7 +196,7 @@ export default class adminDetalleArticulo extends React.Component {
                 />
              </View>
              <View>
-                <TouchableOpacity style={[estilos.tabMenu,estilos.colorBotonesAccion]} 
+                <TouchableOpacity style={[estilos.botonMenu,estilos.colorBotonesAccion]} 
                                     onPress={() => Actions.admin_complementos(datos.id)}>
                     <Text style={estilos.botonMenuText}>Editar Complementos</Text>
                 </TouchableOpacity>

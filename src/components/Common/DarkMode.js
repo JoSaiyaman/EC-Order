@@ -156,12 +156,12 @@ export default StyleSheet.create({
     fontWeight: 'bold',
   },
   tabMenu:{
-    padding: 13,
+    padding: 18,
     alignItems: 'center',
     borderRadius: 20,
   },
   colorBotonesAccion:{
-    backgroundColor: 'rgb(255,74,55)'
+    backgroundColor: ColorFuerte
   },
 
   // Menu (de comida xd)

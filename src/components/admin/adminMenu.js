@@ -63,14 +63,14 @@ export default class adminMenu extends React.Component {
     this.setState({ sectionName: text });
     if(nuevo){
       botonGuardar = <React.Fragment>
-        <TouchableOpacity style={[estilos.tabMenu,estilos.colorBotonesAccion]} 
+        <TouchableOpacity style={[estilos.botonMenu,estilos.colorBotonesAccion]} 
                           onPress={() => this.crearSeccion()}>
           <Text style={estilos.botonMenuText}>Crear Seccion</Text>
         </TouchableOpacity>
       </React.Fragment>
     }else{
       botonGuardar = <React.Fragment>
-        <TouchableOpacity style={[estilos.tabMenu,estilos.colorBotonesAccion]} 
+        <TouchableOpacity style={[estilos.botonMenu,estilos.colorBotonesAccion]} 
                           onPress={() => this.guardarCambios()}>
           <Text style={estilos.botonMenuText}>Guardar Cambios</Text>
         </TouchableOpacity>
@@ -140,7 +140,7 @@ export default class adminMenu extends React.Component {
           renderItem={this.renderSection.bind(this)}
         />
         <Text></Text>
-        <TouchableOpacity style={[estilos.tabMenu,estilos.colorBotonesAccion]}
+        <TouchableOpacity style={[estilos.botonMenu,estilos.colorBotonesAccion]}
           onPress={() => {
             Actions.admin_nuevo_articulo(section_id)
         }}>
@@ -153,7 +153,7 @@ export default class adminMenu extends React.Component {
   }
 
   componentDidMount() {
-    nuevo = false;
+    nuevo = true;
     contentRender = <React.Fragment> 
       <Text>Mensaje de Bienvenida</Text> 
       </React.Fragment>;

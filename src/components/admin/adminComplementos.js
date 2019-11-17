@@ -25,7 +25,6 @@ import { Actions } from 'react-native-router-flux';
 import axios from 'axios';
 import light from '../Common/lightMode';
 import dark from '../Common/DarkMode';
-import { thisExpression } from '@babel/types';
 import { array } from 'prop-types';
 
 let nuevoComplemento = <React.Fragment></React.Fragment>;
@@ -98,7 +97,7 @@ export default class adminComplementos extends React.Component {
   nuevoComplementoVisible(){
     let estilos = this.estilo()
     nuevoComplemento = <React.Fragment>
-      <TouchableOpacity style={[estilos.tabMenu,estilos.colorBotonesAccion]} 
+      <TouchableOpacity style={[estilos.botonMenu,estilos.colorBotonesAccion]} 
                         onPress={() => this.nuevoComplemento()}>
         <Text style={estilos.botonMenuText}>Nuevo Complemento</Text>
       </TouchableOpacity>
@@ -267,7 +266,7 @@ export default class adminComplementos extends React.Component {
                         />
                     </View>
                 </ScrollView>
-                <TouchableOpacity style={[estilos.tabMenu,estilos.colorBotonesAccion,{margin: 15}]} 
+                <TouchableOpacity style={[estilos.botonMenu,estilos.colorBotonesAccion,{margin: 15}]} 
                                   onPress={() => this.guardarCambios()}>
                     <Text style={estilos.botonMenuText}>Guardar Cambios</Text>
                 </TouchableOpacity>

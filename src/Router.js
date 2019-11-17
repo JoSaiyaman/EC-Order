@@ -43,13 +43,13 @@ export default class RouterComponent extends React.Component {
             global.userId = await AsyncStorage.getItem("A_USUARIO")
             switch (global.style) {
                 case 'dark':
-                    this.setState({back_color: 'rgb(13, 97, 114)'});
+                    this.setState({back_color: 'rgb(122,121,225)'});
                     break;
                 case 'light': 
-                    this.setState({back_color: '#1AA6A8'});
+                    this.setState({back_color: 'rgb(255,166,1)'});
                     break;
                 default: 
-                    this.setState({back_color: '#1AA6A8'});
+                    this.setState({back_color: 'rgb(255,166,1)'});
                     break;
             }
         } catch(e) {
@@ -61,13 +61,13 @@ export default class RouterComponent extends React.Component {
         if (global.skip) {
             switch (global.style) {
                 case 'dark':
-                    this.setState({back_color: 'rgb(13, 97, 114)'});
+                    this.setState({back_color: 'rgb(122,121,225)'});
                     break;
                 case 'light': 
-                    this.setState({back_color: '#1AA6A8'});
+                    this.setState({back_color: 'rgb(255,166,1)'});
                     break;
                 default: 
-                    this.setState({back_color: '#1AA6A8'});
+                    this.setState({back_color: 'rgb(255,166,1)'});
                     break;
             }
             global.skip = false;

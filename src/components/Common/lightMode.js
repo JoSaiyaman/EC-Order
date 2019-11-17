@@ -1,13 +1,15 @@
 import { StyleSheet } from 'react-native';
 
 let ColorFuerte = 'rgb(255,74,55)';
-let ColorDebil = 'rgb(255,255,141)';
-let ColorDebilOscuro = 'rgb(230,230,141)';
+let ColorNeutro = 'rgb(255,166,1)';
+let ColorNeutroOscuro = 'rgba(255,166,1,0.5)';
+let ColorDebil = 'rgb(255,255,255)';
+let ColorDebilOscuro = 'rgb(200,200,200)';
 let ColorAzul = 'rgb(122,121,225)';
 
 export default StyleSheet.create({
   loginBackground: {
-    backgroundColor: ColorDebil
+    backgroundColor: 'rgb(255,255,141)'
   },
   celdaOption: {
     height: 40
@@ -65,7 +67,7 @@ export default StyleSheet.create({
   },
   container2: {
     flex: 1,
-    backgroundColor: ColorDebilOscuro,
+    backgroundColor: ColorNeutroOscuro,
     justifyContent: "space-around"
   },
   header:{
@@ -102,7 +104,7 @@ export default StyleSheet.create({
 
   // Router Navbar
   navBar: {
-    backgroundColor: ColorFuerte,
+    backgroundColor: ColorNeutro,
     color: ColorDebil,
     fontWeight: "normal"
   },
@@ -121,7 +123,7 @@ export default StyleSheet.create({
     flex: 1,
     padding: 6,
     fontSize: 16,
-    backgroundColor: 'rgb(255,166,1)',
+    backgroundColor: ColorNeutro,
     elevation: 1
   },
 
@@ -161,6 +163,11 @@ export default StyleSheet.create({
     padding: 18,
     alignItems: 'center',
     borderRadius: 20,
+    shadowColor: 'rgba(0,0,0, .4)', // IOS
+    shadowOffset: { height: 1, width: 1 }, // IOS
+    shadowOpacity: 1, // IOS
+    shadowRadius: 1, //IOS
+    elevation: 12, // Android
   },
   colorBotonesAccion:{
     backgroundColor: ColorFuerte

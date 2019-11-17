@@ -123,7 +123,7 @@ export default class adminNuevoArticulo extends React.Component {
                     value={this.state.description}
                 />
               </View>
-              <TouchableOpacity style={[estilos.tabMenu,estilos.colorBotonesAccion]} 
+              <TouchableOpacity style={[estilos.botonMenu,estilos.colorBotonesAccion]} 
                         onPress={() => this.crearArticulo()}>
                     <Text style={estilos.botonMenuText}>Crear Artículo</Text>
                 </TouchableOpacity>
