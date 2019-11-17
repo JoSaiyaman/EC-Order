@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-let ColorFuerte = 'rgb(255,74,55)';
+let ColorFuerte = "orange";//'rgb(255,74,55)';
 let ColorDebil = 'rgb(255,255,141)';
 
 export default StyleSheet.create({

@@ -86,12 +86,16 @@ class Login extends Component {
 
   renderButton() {
     return (
-      <Button title={"Login"} 
-      buttonStyle={{backgroundColor: 'rgb(255,74,55)', width:130, elevation: 1}} 
-      onPress={this.handleRequest.bind(this)}/>  
+      <View>
+        <Button title={"Login"} 
+        buttonStyle={{backgroundColor: 'rgb(255,74,55)', width:130, elevation: 1}} 
+        onPress={this.handleRequest.bind(this)}/>  
+        <Button title={"<Login as cook>"}
+          buttonStyle={{ backgroundColor: 'rgb(255,74,55)', width: 130, elevation: 1 }}
+          onPress={() => Actions.cook()} />  
+      </View>
     );
   }
-
   render() {
     let estilos;
     let bgimage;

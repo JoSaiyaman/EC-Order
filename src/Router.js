@@ -14,6 +14,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Login from './components/Login';
 import HomeScreen from './components/admin/HomeScreen';
 import adminMenu from './components/admin/adminMenu';
+import CookOrderTray from './components/cook/CookOrderTray';
 
 export default class RouterComponent extends React.Component {
     constructor(props) {
@@ -155,6 +156,20 @@ export default class RouterComponent extends React.Component {
 
 
 
+                </Stack>
+
+                <Stack
+                    key="cook"
+                    type="reset"
+                    style={style.titleStyle}
+                >
+                    <Scene
+                        hideNavBar
+                        title="Bandeja de ordenes"
+                        key="cook_order_tray"
+                        component={CookOrderTray}
+                        initial                        
+                    />
                 </Stack>
 
             </Stack>
