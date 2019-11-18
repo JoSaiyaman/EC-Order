@@ -134,7 +134,7 @@ export default class dinersMenu extends React.Component {
   }
 
   verOrden(){
-    Alert.alert("Aquí va la pantalla de órdenes y eso")
+    Actions.diners_orden();
   }
 
   render() {

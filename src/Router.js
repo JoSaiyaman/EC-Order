@@ -19,6 +19,7 @@ import adminComplementos from './components/admin/adminComplementos';
 import adminNuevoArticulo from './components/admin/adminNuevoArticulo';
 import dinersMenu from './components/diners/dinersMenu';
 import dinersDetalleArticulo from './components/diners/dinersDetalleArticulo';
+import dinersOrden from './components/diners/dinersOrden';
 
 export default class RouterComponent extends React.Component {
     constructor(props) {
@@ -189,6 +190,12 @@ export default class RouterComponent extends React.Component {
                         title=""
                         key="diners_detalle_articulo"
                         component={dinersDetalleArticulo}              
+                    />
+                    <Scene
+                        hideNavBar
+                        title=""
+                        key="diners_orden"
+                        component={dinersOrden}              
                     />
 
                 </Stack>
