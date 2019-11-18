@@ -20,6 +20,8 @@ import adminNuevoArticulo from './components/admin/adminNuevoArticulo';
 import dinersMenu from './components/diners/dinersMenu';
 import dinersDetalleArticulo from './components/diners/dinersDetalleArticulo';
 import dinersOrden from './components/diners/dinersOrden';
+import dinersReview from './components/diners/dinersReview.js';
+import dinersCuenta from './components/diners/dinersCuenta';
 
 export default class RouterComponent extends React.Component {
     constructor(props) {
@@ -197,7 +199,18 @@ export default class RouterComponent extends React.Component {
                         key="diners_orden"
                         component={dinersOrden}              
                     />
-
+                    <Scene
+                        hideNavBar
+                        title=""
+                        key="diners_review"
+                        component={dinersReview}
+                    />
+                    <Scene
+                        hideNavBar
+                        title=""
+                        key="diners_cuenta"
+                        component={dinersCuenta}
+                    />
                 </Stack>
 
             </Stack>
@@ -225,5 +238,4 @@ const style = StyleSheet.create({
         width: 200
     }
 });  
-  
-// export default RouterComponent;
+

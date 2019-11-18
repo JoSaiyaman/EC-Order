@@ -110,11 +110,6 @@ export default class HomeScreen extends React.Component {
               </TouchableOpacity>
             </View>
             <View style={estilos.opcion}>
-              <TouchableOpacity style={[estilos.botonMenu,{backgroundColor: 'rgb(255,255,141)'}]} onPress={() => {
-              Actions.diners()
-              }}>
-                <Text  style={[estilos.botonMenuText, {color: 'rgb(0,0,0)'}]}>TEMP - Comensales</Text>
-              </TouchableOpacity>
             </View>
           </ScrollView>
         </View>

@@ -134,7 +134,7 @@ export default class dinersDetalleArticulo extends React.Component {
             "quantity": cantNum,
             "complements": this.state.selectedComplements_id
         }; 
-        axios.post('alternative_session/' + global.alt_space_session_key + '/space/account/order/', parms
+        axios.post('/alternative_session/' + global.alt_space_session_key + '/space/account/order/', parms
             ).then(response => {
             Alert.alert("Atención","La orden fue actualizada. Dirígase a la lista de órdenes (esquina superior derecha) para confirmar.");
             this.setState({
@@ -149,7 +149,7 @@ export default class dinersDetalleArticulo extends React.Component {
   }
 
   llamarMesero(){
-    axios.post('alternative_session/' + global.alt_space_session_key + '/space/account/summon_waiter/',
+    axios.post('/alternative_session/' + global.alt_space_session_key + '/space/account/summon_waiter/',
         ).then(response => {
         Alert.alert("Atención","Su mesero ha sido llamado.");
         })

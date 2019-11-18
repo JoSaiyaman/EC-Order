@@ -92,6 +92,7 @@ export default class dinersOrden extends React.Component {
   renderOrdenados(ordenado){
     let estilos = this.estilo()  
     let color = ''
+    let precio = ordenado.item.considered_price;
     switch(ordenado.item.status){
         case "ORDERED":
             color = 'rgb(141, 156, 255)'
@@ -101,6 +102,7 @@ export default class dinersOrden extends React.Component {
             break
         case "REJECTED":
             color = 'rgb(255, 141, 141)'
+            precio = "0.00"
             break
         case "READY":
             color = 'rgb(147, 255, 141)'
@@ -118,7 +120,7 @@ export default class dinersOrden extends React.Component {
                     )}
             </View>
             <View style = {{flex: 2}}>
-                <Text style={estilos.subtitulo1}>${ordenado.item.considered_price}</Text>  
+                <Text style={estilos.subtitulo1}>${precio}</Text>  
                 <Text style={[estilos.contenido,{backgroundColor: color,textAlign: 'center'}]}>
                     {ordenado.item.status}
                 </Text>
@@ -129,7 +131,7 @@ export default class dinersOrden extends React.Component {
   }
 
   componentDidMount() {
-    const base_url_pendiente = 'alternative_session/' + global.alt_space_session_key + '/space/account/order/'
+    const base_url_pendiente = '/alternative_session/' + global.alt_space_session_key + '/space/account/order/'
     axios.get(base_url_pendiente
      ).then(response => {
         let preTotal = 0
@@ -143,12 +145,14 @@ export default class dinersOrden extends React.Component {
      })
      .catch(error =>  console.log(error));
      
-    const base_url_ordenado = 'alternative_session/' + global.alt_space_session_key + '/space/account/order_follow_up/'
+    const base_url_ordenado = '/alternative_session/' + global.alt_space_session_key + '/space/account/order_follow_up/'
     axios.get(base_url_ordenado
      ).then(response => {
         let total = 0
         for(let i = 0; i < response.data.length; i++){
-          total += parseFloat(response.data[i].considered_price)
+            if(response.data[i].status !== "REJECTED"){
+                total += parseFloat(response.data[i].considered_price)
+            }
         }
         this.setState({
             data2: response.data,
@@ -161,12 +165,39 @@ export default class dinersOrden extends React.Component {
   }
 
   llamarMesero(){
-    axios.post('alternative_session/' + global.alt_space_session_key + '/space/account/summon_waiter/',
+    axios.post('/alternative_session/' + global.alt_space_session_key + '/space/account/summon_waiter/',
         ).then(response => {
         Alert.alert("Atención","Su mesero ha sido llamado.");
         })
         .catch(error => Alert.alert("Atención","Hubo un error. Su mesero no pudo ser llamado."));
   }
+
+  solicitarCuenta(){
+    const base_url_cuenta = '/alternative_session/' + global.alt_space_session_key + '/space/account/check_solicitation/'
+  axios.post(base_url_cuenta
+      ).then(response => {
+          Actions.diners_review();
+      })
+      .catch(error => Alert.alert("Alerta","No se pudo solicitar la cuenta."));
+  
+}
+
+pedirCuenta(){
+  Alert.alert(
+      'Atención',
+      'Está por pedir la cuenta. Esto lo imposibilitará de seguir ordenando.',
+      [
+        {
+          text: 'Regresar',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () => this.solicitarCuenta()},
+      ],
+      {cancelable: true},
+    );
+}
+
 
   render() { 
     let estilos = this.estilo()
@@ -218,8 +249,8 @@ export default class dinersOrden extends React.Component {
                 />
              </View>
              <View style={{marginTop:40, marginBottom:15}}>
-                <TouchableOpacity style={[estilos.botonMenu,estilos.colorBotonesAccion]} >
-                                    {/* // onPress={() => this.enviarOrden()}> */}
+                <TouchableOpacity style={[estilos.botonMenu,estilos.colorBotonesAccion]}
+                                    onPress={() => this.pedirCuenta()}>
                 <Text style={estilos.botonMenuText}>Pedir Cuenta - ${this.state.total.toFixed(2)}</Text>
                 </TouchableOpacity>
              </View>
