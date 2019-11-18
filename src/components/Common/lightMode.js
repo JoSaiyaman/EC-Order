@@ -237,5 +237,19 @@ export default StyleSheet.create({
   complementSelect:{
     fontWeight: "bold",
     color: ColorAzul
-  }
+  },
+  textButton:{
+    color: '#fff', 
+    padding: 9, 
+    borderRadius: 6, 
+    backgroundColor: 'rgb(255,74,55)',
+    elevation: 8
+  },
+  listComplementos:{
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center"
+}
 });

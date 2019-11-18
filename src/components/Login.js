@@ -7,7 +7,8 @@ import {
   ScrollView,
   Image,
   TextInput, 
-  ToastAndroid
+  ToastAndroid,
+  Alert
 } from 'react-native';
 import {Button, Overlay} from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
@@ -35,6 +36,70 @@ class Login extends Component {
      console.log("############# Se guardó el USUARIO")
     })()
   }
+
+  handleRequest() {
+    const payload = { 
+      "username": this.state.username, 
+      "password": this.state.password 
+    } 
+    
+    if (payload.username == '') {
+      ToastAndroid.showWithGravityAndOffset(
+        'Se debe ingresar un usuario',
+        ToastAndroid.LONG,
+        ToastAndroid.BOTTOM,
+        0,
+        50
+      );
+    } else if (payload.password == '') {
+      ToastAndroid.showWithGravityAndOffset(
+        'Se debe ingresar una contraseña',
+        ToastAndroid.LONG,
+        ToastAndroid.BOTTOM,
+        0,
+        50
+      );
+    } else {
+      this.setState({ loginProcessing: true });
+      axios
+      .post('/auth/login/', payload)
+      .then(response => {
+        const token = response.data.token;
+        axios.defaults.headers.common.Authorization = `Token ${token}`;
+        console.log(token)
+        Actions.admin();
+        this.setUserId(payload.username);
+      })
+      .catch(error => {
+        this.setState({loginProcessing: false});
+        ToastAndroid.showWithGravityAndOffset("Las credenciales no son válidas.",ToastAndroid.LONG,ToastAndroid.BOTTOM,0,50);
+      })
+    }
+  }
+
+// ======================temp: Esto no va aquí; va con el escáner de QR
+  dinerLogin(){
+    let QR = 'S_b4ce81f6-ddd0-485a-9167-3d93c0acba43'
+    this.setState({ loginProcessing: true });
+    axios
+    .get('/alternative_session/' + QR + '/')
+    .then(response => {
+      if(response.data.active_account){
+        // const token = response.data.token;
+        // axios.defaults.headers.common.Authorization = `Token ${token}`;
+        global.alt_space_session_key = response.data.session_key
+        Actions.diners()
+      }else{
+        this.setState({loginProcessing: false});
+        Alert.alert("Cuenta desactivada");
+      }
+    })
+    .catch(error => {
+      this.setState({loginProcessing: false});
+      Alert.alert("Hubo un error")
+      })
+  }
+// ==========================================temp
 
   handleRequest() {
     const payload = { 
@@ -176,6 +241,13 @@ class Login extends Component {
                 <View style={buttonContainerStyle}>
                   {this.renderButton()}
                 </View>
+                {/* ==============temp: ditto del temp de arriba  */}
+                <View style={buttonContainerStyle}>
+                  <Button title={"Diner"} 
+                  buttonStyle={[estilos.colorBotonesAccion,{ width:130, elevation: 1}]} 
+                  onPress={this.dinerLogin.bind(this)}/>  
+                </View>
+                {/* ==========================================temp */}
               </View>
             </View>
           </View>

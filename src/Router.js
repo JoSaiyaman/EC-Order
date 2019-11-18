@@ -17,6 +17,8 @@ import adminMenu from './components/admin/adminMenu';
 import adminDetalleArticulo from './components/admin/adminDetalleArticulo';
 import adminComplementos from './components/admin/adminComplementos';
 import adminNuevoArticulo from './components/admin/adminNuevoArticulo';
+import dinersMenu from './components/diners/dinersMenu';
+import dinersDetalleArticulo from './components/diners/dinersDetalleArticulo';
 
 export default class RouterComponent extends React.Component {
     constructor(props) {
@@ -151,9 +153,6 @@ export default class RouterComponent extends React.Component {
                         component={adminNuevoArticulo}          
                     />
 
-
-
-
                     {/* Configuración */}
                     {/* <Scene
                         title=""
@@ -171,7 +170,26 @@ export default class RouterComponent extends React.Component {
                         component={Pantalla}
                     /> */}
 
+                </Stack>
 
+                <Stack
+                    key="diners"
+                    type="reset"
+                    style={style.titleStyle}
+                >
+                    <Scene
+                        hideNavBar
+                        title=""
+                        key="diners_menu"
+                        component={dinersMenu}
+                        initial                        
+                    />
+                    <Scene
+                        hideNavBar
+                        title=""
+                        key="diners_detalle_articulo"
+                        component={dinersDetalleArticulo}              
+                    />
 
                 </Stack>
 
