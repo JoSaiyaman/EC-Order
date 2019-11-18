@@ -16,7 +16,7 @@ import dark from '../Common/DarkMode';
 import { SwipeListView} from 'react-native-swipe-list-view';
 
 
-export default class HomeScreen extends React.Component {
+export default class CookOrderTray extends React.Component {
     constructor(props) {
         super(props);
 
@@ -38,7 +38,6 @@ export default class HomeScreen extends React.Component {
                     loading: false,
                     order_list: response.data
                 });
-                console.log("ORDER LIIIIIST REAdyyyyy")
             })
             .catch(error => {
                 let error_text = "Ha ocurrido un error"
@@ -48,7 +47,6 @@ export default class HomeScreen extends React.Component {
 
     acceptOrder(order_id) {
         this.setState({ loading: true });
-        console.log("ACCEPT ORDER "+ order_id)
         let cook_token = "VC_5564cede-5f28-47e7-8fad-e3fe047ee2e9"
         axios
             .put(`/alternative_session/${cook_token}/cook/account_orders/${order_id}/accept/`, {})
@@ -57,11 +55,9 @@ export default class HomeScreen extends React.Component {
                     loading: false
                 });
                 this.getOrderList()
-                console.log("ACCEPT ORDER -> SUCCESS")
             })
             .catch(error => {
                 this.setState({ loading: false });
-                console.log("ACCEPT ORDER -> FAILURE")
                 let error_text = "Ha ocurrido un error"
                 ToastAndroid.showWithGravityAndOffset(error_text, ToastAndroid.LONG, ToastAndroid.BOTTOM, 0, 50)
             }); 
@@ -69,7 +65,6 @@ export default class HomeScreen extends React.Component {
 
     rejectOrder(order_id) {
         this.setState({ loading: true });
-        console.log("REJECT ORDER " + order_id)
         let cook_token = "VC_5564cede-5f28-47e7-8fad-e3fe047ee2e9"
         axios
             .put(`/alternative_session/${cook_token}/cook/account_orders/${order_id}/reject/`, {})
@@ -78,11 +73,9 @@ export default class HomeScreen extends React.Component {
                     loading: false
                 });
                 this.getOrderList()
-                console.log("REJECT ORDER -> SUCCESS")
             })
             .catch(error => {
                 this.setState({ loading: false });
-                console.log("REJECT ORDER -> FAILURE")
                 let error_text = "Ha ocurrido un error"
                 ToastAndroid.showWithGravityAndOffset(error_text, ToastAndroid.LONG, ToastAndroid.BOTTOM, 0, 50)
             }); 
@@ -90,7 +83,6 @@ export default class HomeScreen extends React.Component {
 
     readyOrder(order_id) {
         this.setState({ loading: true });
-        console.log("READY ORDER " + order_id)
         let cook_token = "VC_5564cede-5f28-47e7-8fad-e3fe047ee2e9"
         axios
             .put(`/alternative_session/${cook_token}/cook/account_orders/${order_id}/ready/`, {})
@@ -99,11 +91,9 @@ export default class HomeScreen extends React.Component {
                     loading: false
                 });
                 this.getOrderList()
-                console.log("READY ORDER -> SUCCESS")
             })
             .catch(error => {
                 this.setState({ loading: false });
-                console.log("READY ORDER -> FAILURE")
                 let error_text = "Ha ocurrido un error"
                 ToastAndroid.showWithGravityAndOffset(error_text, ToastAndroid.LONG, ToastAndroid.BOTTOM, 0, 50)
             }); 
@@ -116,7 +106,7 @@ export default class HomeScreen extends React.Component {
     }
 
     componentWillUnmount () {
-        clearInterval(this.titleInterval);
+        clearInterval(this.get_order_interval);
     }
 
     render() {

@@ -15,6 +15,8 @@ import Login from './components/Login';
 import HomeScreen from './components/admin/HomeScreen';
 import adminMenu from './components/admin/adminMenu';
 import CookOrderTray from './components/cook/CookOrderTray';
+import WaiterSummary from './components/waiter/WaiterSummary';
+import WaiterSummaryAccountDetail from './components/waiter/WaiterSummaryAccountDetail';
 
 export default class RouterComponent extends React.Component {
     constructor(props) {
@@ -169,6 +171,25 @@ export default class RouterComponent extends React.Component {
                         key="cook_order_tray"
                         component={CookOrderTray}
                         initial                        
+                    />
+                </Stack>
+
+                <Stack
+                    key="waiter"
+                    type="reset"
+                    style={style.titleStyle}
+                >
+                    <Scene
+                        hideNavBar
+                        title="Cuentas abiertas"
+                        key="waiter_open_account_summary"
+                        component={WaiterSummary}
+                        initial                        
+                    />
+                    <Scene
+                        title="Ordenes por entregar"
+                        key="waiter_summary_account_detail"
+                        component={WaiterSummaryAccountDetail}                      
                     />
                 </Stack>
 
