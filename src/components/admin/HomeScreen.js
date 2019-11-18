@@ -47,10 +47,6 @@ export default class HomeScreen extends React.Component {
         lenguajeVisible: true
       });
   }
-  handleRequest() {
-    global.skip = false;
-    Actions.auth()
-  };
 
   render() {
     let estilos;
@@ -66,63 +62,18 @@ export default class HomeScreen extends React.Component {
       break; 
     }
 
-    // var randomImages = [
-    //   require('../../assets/images/xxx.png')
-    // ];
-
-    var navigationView = (
-      <View style={estilos.container}>
-        <ScrollView style={estilos.ScrollContainer} contentContainerStyle={estilos.contentContainer}>
-          <View>
-            <View style ={estilos.header}>
-                <View >
-                    <Image style={estilos.profilepicWrap}/>
-                </View> 
-            </View>
-            
-            <View style={estilos.texto}>
-                {/* <Text style={estilos.name}>Otras opciones</Text> */}
-            </View >   
-            
-            <TouchableOpacity onPress={() => {
-              // Actions.settings()
-              Alert.alert('Escena de configuración')
-              }}>
-              <View style={estilos.celdaOption}>
-                <Text style={estilos.menuOption}>Configuración</Text>
-              </View>
-            </TouchableOpacity>
-
-          </View>
-          <View style={{paddingBottom: 25}}>
-            <TouchableOpacity onPress={this.handleRequest.bind(this)}>
-              <View style={estilos.celdaOption}>
-                <Text style={estilos.menuOptionFinal}>Cerrar sesión</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </ScrollView>
-      </View>    
-    ); 
-    
     return ( 
-      <DrawerLayoutAndroid style={estilos.container}
-      ref = "mainDrawer"
-      drawerWidth={300}
-      renderNavigationView={() => navigationView}>
-      <Header
-        backgroundColor= {estilos.navBar.backgroundColor}
-        leftComponent={{ icon: 'menu', color: '#fff', onPress:() => this.refs['mainDrawer'].openDrawer() }}
-        centerComponent={{ text: "Menú principal", style: { color: '#fff' } }}
-        containerStyle={{
-          marginTop: Platform.OS === 'ios' ? 0 : - 24,
-          borderBottomWidth: 0
-        }}
-      />
-        <View >
+      <View >
+        <Header
+          backgroundColor= {estilos.navBar.backgroundColor}
+          // leftComponent={{ icon: 'menu', color: '#fff', onPress:() => this.refs['mainDrawer'].openDrawer() }}
+          centerComponent={{ text: "Menú principal", style: { color: '#fff' } }}
+          containerStyle={{
+            marginTop: Platform.OS === 'ios' ? 0 : - 24,
+            borderBottomWidth: 0
+          }}
+        />
           <ScrollView>
-            <View style={estilos.opcion}>
-            </View>
             <View style={estilos.opcion}>
               <TouchableOpacity style={[estilos.botonMenu,{backgroundColor: 'rgb(122,121,225)'}]} onPress={() => {
               Actions.admin_menu()
@@ -150,9 +101,18 @@ export default class HomeScreen extends React.Component {
                 <Text  style={estilos.botonMenuText}> Reportes </Text>
               </TouchableOpacity>
             </View>
+            <View style={estilos.opcion}>
+              <TouchableOpacity style={[estilos.botonMenu,{backgroundColor: 'rgb(255,74,55)'}]}onPress={() => {
+                global.skip = false;
+                Actions.auth()
+              }}>
+                <Text  style={estilos.botonMenuText}> Cerrar sesión </Text>
+              </TouchableOpacity>
+            </View>
+            <View style={estilos.opcion}>
+            </View>
           </ScrollView>
         </View>
-      </DrawerLayoutAndroid>
     );
   }
 }
