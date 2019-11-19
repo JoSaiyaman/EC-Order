@@ -154,7 +154,7 @@ export default class ScanQr extends Component{
                 global.session_mode = response.data.session_mode;
                 global.alt_space_session_key  = response.data.session_key;
                 global.active_account = response.data.active_account;
-                Alert.alert("Bienvenido");                
+                // Alert.alert("Bienvenido");                
 
                 console.log(global.session_mode);
                 console.log(global.alt_space_session_key);

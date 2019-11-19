@@ -28,7 +28,7 @@ export default class WaiterSummaryAccountDetail extends React.Component {
 
     markAsDelivered(order_id) {
         this.setState({ loading: true });
-        let waiter_token = "VW_efc60842-e550-497a-862d-48f4955722f0"
+        let waiter_token = global.alt_space_session_key
         let account_id = this.state.current_account
         axios
             .post(`/alternative_session/${waiter_token}/waiter/open_accounts/${account_id}/orders/${order_id}/delivered/`, {})
@@ -48,7 +48,7 @@ export default class WaiterSummaryAccountDetail extends React.Component {
 
     getReadyOrderList() {
         this.setState({ loading: true });
-        let waiter_token = "VW_efc60842-e550-497a-862d-48f4955722f0"
+        let waiter_token = global.alt_space_session_key
         let account_id = this.state.current_account
         axios
             .get(`/alternative_session/${waiter_token}/waiter/open_accounts/${account_id}/orders/`)
@@ -66,7 +66,7 @@ export default class WaiterSummaryAccountDetail extends React.Component {
     
     cancelAccount() {
         this.setState({ loading: true });
-        let waiter_token = "VW_efc60842-e550-497a-862d-48f4955722f0"
+        let waiter_token = global.alt_space_session_key
         let account_id = this.state.current_account
         axios
             .post(`/alternative_session/${waiter_token}/waiter/open_accounts/${account_id}/cancel/`, {})
