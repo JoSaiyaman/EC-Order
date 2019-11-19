@@ -171,4 +171,13 @@ export default StyleSheet.create({
     // alignSelf: 'flex-end',
     justifyContent: 'flex-start'
   },
+
+  //****************************Generales********
+  floating_icon:{
+
+    position:"absolute",
+    left: 10,
+    top: 10
+
+  }
 });

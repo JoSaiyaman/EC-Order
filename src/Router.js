@@ -15,6 +15,7 @@ import Login from './components/Login';
 import HomeScreen from './components/admin/HomeScreen';
 import adminMenu from './components/admin/adminMenu';
 import CookOrderTray from './components/cook/CookOrderTray';
+import ScanQr from './components/ScanQr';
 
 export default class RouterComponent extends React.Component {
     constructor(props) {
@@ -168,6 +169,19 @@ export default class RouterComponent extends React.Component {
                         title="Bandeja de ordenes"
                         key="cook_order_tray"
                         component={CookOrderTray}
+                        initial                        
+                    />
+                </Stack>
+
+                <Stack
+                    key="scan"                    
+                    style={style.titleStyle}
+                >
+                    <Scene
+                        hideNavBar
+                        title="Bandeja de ordenes"
+                        key="scanQr"
+                        component={ScanQr}
                         initial                        
                     />
                 </Stack>
