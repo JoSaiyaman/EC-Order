@@ -29,6 +29,9 @@ import dinersDetalleArticulo from './components/diners/dinersDetalleArticulo';
 import dinersOrden from './components/diners/dinersOrden';
 import dinersReview from './components/diners/dinersReview.js';
 import dinersCuenta from './components/diners/dinersCuenta';
+import adminAltaEspacio from './components/admin/adminAltaEspacio';
+import adminExpandQR from './components/admin/adminExpandQR';
+import adminAltaPuesto from './components/admin/adminAltaPuesto';
 
 
 export default class RouterComponent extends React.Component {
@@ -173,6 +176,23 @@ export default class RouterComponent extends React.Component {
                         key="admin_feedback_report"
                         component={AdminFeedbackReport}          
                     />
+
+                    <Scene
+                        title="Espacios"
+                        key="admin_espacios"
+                        component={adminAltaEspacio}
+                    />
+
+                    <Scene
+                        title="QR"
+                        key="admin_qr"
+                        component={adminExpandQR} />
+
+                    <Scene
+                        title="Puestos"
+                        key="admin_puestos"
+                        component={adminAltaPuesto} />
+
                     {/* Configuración */}
                     {/* <Scene
                         title=""

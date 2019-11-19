@@ -82,12 +82,23 @@ export default class HomeScreen extends React.Component {
               </TouchableOpacity>
             </View>
             <View style={estilos.opcion}>
-              <TouchableOpacity style={[estilos.botonMenu,{backgroundColor: 'rgb(68,114,196)'}]}>
+              <TouchableOpacity style={[estilos.botonMenu,{backgroundColor: 'rgb(112,151,245)'}]}>
+                <Text  style={estilos.botonMenuText}> Manejar restaurante </Text>
+              </TouchableOpacity>
+            </View>
+            <View style={estilos.opcion}>
+              <TouchableOpacity style={[estilos.botonMenu,{backgroundColor: 'rgb(68,114,196)'}]}
+                onPress={()=>{Actions.admin_espacios()}}
+              
+              >
                 <Text  style={estilos.botonMenuText}> Manejar espacios </Text>
               </TouchableOpacity>
             </View>
             <View style={estilos.opcion}>
-              <TouchableOpacity style={[estilos.botonMenu,{backgroundColor: 'rgb(0,32,96)'}]}>
+              <TouchableOpacity style={[estilos.botonMenu,{backgroundColor: 'rgb(0,32,96)'}]}
+                onPress={()=>{Actions.admin_puestos()}}
+              
+              >
                 <Text  style={estilos.botonMenuText}> Manejar puestos </Text>
               </TouchableOpacity>
             </View>
