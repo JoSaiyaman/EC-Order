@@ -29,7 +29,7 @@ export default class ScanQr extends Component{
         super(props);
         const {height, width} = Dimensions.get("window");
         this.heigth = height;
-        this.width = width;        
+        this.width = width;      
         this.state = {
 
             loginProcessing:false
