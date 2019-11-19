@@ -12,9 +12,10 @@ import {
   TouchableOpacity,
   Alert
 } from 'react-native';
+import { Icon } from 'react-native-elements';
 import axios from 'axios';
 import { Actions } from 'react-native-router-flux';
-import { colors } from 'react-native-elements';
+import PhotoUpload from 'react-native-photo-upload';
 import light from '../Common/lightMode';
 import dark from '../Common/DarkMode';
 
@@ -32,10 +33,10 @@ export default class adminDetalleArticulo extends React.Component {
       data: {},
       name: '',
       description: '',
-      price: ''
+      price: '',
+      imagen: '',
+      continuar: 0
     };
-    console.log("=============Detalle=======")
-    console.log(this.state.received_data)
   }
 
   estilo(){
@@ -52,8 +53,6 @@ export default class adminDetalleArticulo extends React.Component {
   componentDidMount() {
     botonGuardar = <React.Fragment></React.Fragment>;
     const base_url_section = '/restaurant/menu/article/' + this.state.received_data.id + '/';
-    console.log("==============base_url_ detalle")
-    console.log(base_url_section)
     axios.get(base_url_section
      ).then(response => {
         this.setState({
@@ -67,36 +66,58 @@ export default class adminDetalleArticulo extends React.Component {
   }
 
   guardarCambios(){
-      let mensaje = 'Los siguientes campos están vacíos: '
-      const parms = {
-        "name": this.state.name,
-        "description": this.state.description,
-        "price": this.state.price,
-        "is_active": true,
-        "is_available": true
-      };
-      if(this.state.name != '' && this.state.description != '' && this.state.price){
-          const base_url_update = '/restaurant/menu/article/' + this.state.received_data.id + '/';
-          axios.put(base_url_update, parms
-            ).then(response => {
-               Alert.alert("Atención","Artículo actualizado")
-               Actions.pop({ refresh: {key: Math.random()} });
-            })
-            .catch(error => Alert.alert("Atención","Hubo un error. Los datos no fueron actualizados."));
-
-      } else {
-          if(this.state.name == ''){
-              mensaje += '\n*Nombre'
-          }
-          if(this.state.description == ''){
-            mensaje += '\n*Descripción '
-          }
-          if(this.state.price == ''){
-            mensaje += '\n*Precio '
-          }
-          Alert.alert("Atención",mensaje)
+    if(this.state.imagen){
+      let photo = { uri: this.state.imagen,
+        type: 'image/jpeg',
+        name: 'photo.jpg',
       }
+      let formdata = new FormData();
+  
+      formdata.append('authToken', 'secret'); 
+      formdata.append('image', photo.uri)
+      formdata.append('title', 'title');
+      const base_url_imagen = '/restaurant/menu/article/' + this.state.received_data.id + '/image/';
+      console.log(base_url_imagen)
+      axios.post(base_url_imagen, {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'multipart/form-data'
+        },
+        data: formdata
+      }).then(response => {
+        console.log(repsonse)
+      })
+      .catch(error => console.log(error))
+    }
 
+      // let mensaje = 'Los siguientes campos están vacíos: '
+      // const parms = {
+      //   "name": this.state.name,
+      //   "description": this.state.description,
+      //   "price": this.state.price,
+      //   "is_active": true,
+      //   "is_available": true
+      // };
+      // if(this.state.name != '' && this.state.description != '' && this.state.price){
+      //     const base_url_update = '/restaurant/menu/article/' + this.state.received_data.id + '/';
+      //     axios.put(base_url_update, parms
+      //       ).then(response => {
+      //         Actions.pop({ refresh: {key: Math.random()} })
+      //       })
+      //       .catch(error => Alert.alert("Atención","Hubo un error. Los datos no fueron actualizados."));
+
+      // } else {
+      //     if(this.state.name == ''){
+      //         mensaje += '\n*Nombre'
+      //     }
+      //     if(this.state.description == ''){
+      //       mensaje += '\n*Descripción '
+      //     }
+      //     if(this.state.price == ''){
+      //       mensaje += '\n*Precio '
+      //     }
+      //     Alert.alert("Atención",mensaje)
+      // }
   }
 
   botonGuardarVisible(){
@@ -122,6 +143,10 @@ export default class adminDetalleArticulo extends React.Component {
     this.botonGuardarVisible();
   };
 
+  subirFoto(imagen){
+    Alert.alert("Subir Foto")
+  }
+
   render() { 
     let estilos = this.estilo()
     // const loading_producto_data = this.state.loading_producto_data;
@@ -136,6 +161,28 @@ export default class adminDetalleArticulo extends React.Component {
                 <View style ={estilos.header}>
                     <FlatList
                     horizontal={true}
+                    ListHeaderComponent = {
+                      <PhotoUpload
+                          onPhotoSelect={foto => {
+                            this.botonGuardarVisible()
+                            if (foto) {
+                              this.setState({imagen: foto})
+                            }
+                          }}
+                        >
+                          <Icon
+                              name="camera-enhance"
+                              type="MaterialIcons"
+                          />  
+                          <Image
+                          style={{width: 100, height: 100}}
+                          resizeMode='cover'
+                          source={{
+                            uri: ''
+                          }}
+                        />
+                      </PhotoUpload>
+                    }
                     data={datos.menuarticleimage_set}
                     keyExtractor= {(item, index) => datos.menuarticleimage_set + index.toString()}
                     renderItem={({ item }) => {
