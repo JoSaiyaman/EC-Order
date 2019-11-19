@@ -71,13 +71,13 @@ export default class dinersOrden extends React.Component {
     return (
         <View style = {{flexDirection: 'row'}}>
             <View style = {{flex: 4}}>
-                    <Text style={estilos.subtitulo1}>{orden.item.quantity} - {orden.item.menu_article}</Text>
+                    <Text style={estilos.subtitulo1}><Text style={{color: "green"}}>{orden.item.quantity}x</Text> {orden.item.menu_article}</Text>
                     { orden.item.complements.map((item, key)=>(
                         <Text key={key} style={estilos.contenido}> { item } </Text>)
                     )}
             </View>
             <View style = {{flex: 2}}>
-                <Text style={estilos.subtitulo1}>${orden.item.considered_price}</Text>  
+                <Text style={[estilos.subtitulo1,{color: "green"}]}>${orden.item.considered_price}</Text>  
             </View>
             <View style = {{flex: 1}}>
                 <TouchableOpacity style={[estilos.botonMenu,estilos.colorBotonesAccion]}

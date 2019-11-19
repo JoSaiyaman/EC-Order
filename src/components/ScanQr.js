@@ -146,7 +146,7 @@ export default class ScanQr extends Component{
         });
         let url = `/alternative_session/${data.data}`;
 
-        //console.log(url);
+        console.log(url);
         axios
             .get(url)
             .then((response)=>{
@@ -174,9 +174,11 @@ export default class ScanQr extends Component{
                     Actions.waiter();
 
                 }else if (global.session_mode == "SPACE"){
-
-                    Actions.diners();
-
+                    if (global.active_account == true) {
+                        Actions.diners()
+                    } else {
+                        Actions.pre_diners();
+                    }
                 }
                 this.scan = true;
 

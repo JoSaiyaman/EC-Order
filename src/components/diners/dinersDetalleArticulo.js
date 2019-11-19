@@ -87,7 +87,7 @@ export default class dinersDetalleArticulo extends React.Component {
                     name="radio-button-unchecked"
                     type="MaterialIcons"
                 />
-                <Text style={estilos.contenido}>{complementos.item.description} - ${complementos.item.price}</Text>  
+                <Text style={estilos.contenido}>{complementos.item.description} - <Text style={{color: "green"}}>${complementos.item.price}</Text></Text>  
             </TouchableOpacity>
         );
       }
@@ -194,7 +194,7 @@ export default class dinersDetalleArticulo extends React.Component {
                 </View>
               </ScrollView>
               <View>
-                <Text style={estilos.titulo1}>{datos.name} - ${datos.price}</Text>
+                <Text style={estilos.titulo1}>{datos.name} - <Text style={{color: "green"}}>${datos.price}</Text></Text>
               </View>
               <View><Text style={[estilos.subtitulo1,{fontWeight:'normal'}]}>{datos.description}</Text></View>
               <View>

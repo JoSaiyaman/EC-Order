@@ -29,6 +29,7 @@ import dinersDetalleArticulo from './components/diners/dinersDetalleArticulo';
 import dinersOrden from './components/diners/dinersOrden';
 import dinersReview from './components/diners/dinersReview.js';
 import dinersCuenta from './components/diners/dinersCuenta';
+import DinersInitializeAccount from './components/diners/dinersInitializeAccount';
 import adminAltaEspacio from './components/admin/adminAltaEspacio';
 import adminExpandQR from './components/admin/adminExpandQR';
 import adminAltaPuesto from './components/admin/adminAltaPuesto';
@@ -210,6 +211,20 @@ export default class RouterComponent extends React.Component {
                         component={Pantalla}
                     /> */}
 
+                </Stack>
+
+                <Stack
+                    key="pre_diners"
+                    type="reset"
+                    style={style.titleStyle}
+                >
+                    <Scene
+                        hideNavBar
+                        title=""
+                        key="diners_initialize_account"
+                        component={DinersInitializeAccount}
+                        initial                        
+                    />
                 </Stack>
 
                 <Stack

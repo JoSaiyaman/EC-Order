@@ -189,7 +189,7 @@ export default class adminDetalleArticulo extends React.Component {
                   renderItem={({ item }) => {
                   return (
                     <View>
-                      <Text style={estilos.contenido}>{item.description} - ${item.price}</Text>  
+                      <Text style={estilos.contenido}>{item.description} - <Text style={{color: "green"}}>${item.price}</Text></Text>  
                     </View>
                     );
                   }}
