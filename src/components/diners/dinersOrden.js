@@ -114,14 +114,14 @@ export default class dinersOrden extends React.Component {
     return (
         <View style = {{flexDirection: 'row'}}>
             <View style = {{flex: 4}}>
-                    <Text style={estilos.subtitulo1}>{ordenado.item.quantity} - {ordenado.item.menu_article}</Text>
+                    <Text style={estilos.subtitulo1}><Text style={{color: "green"}}>{ordenado.item.quantity}x</Text> {ordenado.item.menu_article}</Text>
                     { ordenado.item.complements.map((item, key)=>(
-                        <Text key={key} style={estilos.contenido}> { item } </Text>)
+                        <Text key={key} style={estilos.contenido}> - { item } </Text>)
                     )}
             </View>
             <View style = {{flex: 2}}>
-                <Text style={estilos.subtitulo1}>${precio}</Text>  
-                <Text style={[estilos.contenido,{backgroundColor: color,textAlign: 'center'}]}>
+                <Text style={[estilos.subtitulo1, {color: "green"}]}>${precio}</Text>  
+                <Text style={[estilos.contenido,{backgroundColor: color, color: "white", textAlign: 'center', borderRadius: 5}]}>
                     {ordenado.item.status}
                 </Text>
                 <Text></Text>
@@ -145,6 +145,15 @@ export default class dinersOrden extends React.Component {
      })
      .catch(error =>  console.log(error));
      
+     this.getOrdenadoList()
+     this.get_ordenado_list = setInterval(() => this.getOrdenadoList(), 5000);
+  }
+
+  componentWillUnmount () {
+    clearInterval(this.get_ordenado_list);
+  }
+
+  getOrdenadoList() { 
     const base_url_ordenado = '/alternative_session/' + global.alt_space_session_key + '/space/account/order_follow_up/'
     axios.get(base_url_ordenado
      ).then(response => {
@@ -160,8 +169,6 @@ export default class dinersOrden extends React.Component {
         });
      })
      .catch(error =>  console.log(error));
-     
-
   }
 
   llamarMesero(){

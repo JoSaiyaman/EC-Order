@@ -86,8 +86,8 @@ export default class dinersMenu extends React.Component {
         >
          <View style={{flexDirection: 'row'}}>
             <Image source={{uri: imagen_url}} style={{width: 45, height: 45}}/>
-            <View style={{flex:1, margin:5}}>
-              <Text style = {{fontWeight: "bold"}} >{contenido.item.name} - ${contenido.item.price}</Text>
+            <View style={{flex:1, marginBottom:10, marginHorizontal: 5}}>
+              <Text style = {{fontWeight: "bold", fontSize: 16}} >{contenido.item.name} - <Text style={{color: "green"}}>${contenido.item.price}</Text></Text>
               <Text>{contenido.item.description}</Text>                  
               <View style={{ flex: 1 }}>
               </View>
