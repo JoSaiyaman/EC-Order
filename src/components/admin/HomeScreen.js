@@ -67,7 +67,7 @@ export default class HomeScreen extends React.Component {
         <Header
           backgroundColor= {estilos.navBar.backgroundColor}
           // leftComponent={{ icon: 'menu', color: '#fff', onPress:() => this.refs['mainDrawer'].openDrawer() }}
-          centerComponent={{ text: "Menú principal", style: { color: '#fff' } }}
+          centerComponent={{ text: "Menú de administrador", style: { color: '#fff' } }}
           containerStyle={{
             marginTop: Platform.OS === 'ios' ? 0 : - 24,
             borderBottomWidth: 0

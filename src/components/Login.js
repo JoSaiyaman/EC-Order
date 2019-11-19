@@ -163,8 +163,8 @@ class Login extends Component {
     let estilos = this.estilo()
     return (
       <View>
-        <Button title={"Login"} 
-        buttonStyle={[estilos.colorBotonesAccion,{ width:130, elevation: 1}]} 
+        <Button title={"Iniciar sesión"} 
+        buttonStyle={[estilos.colorBotonesAccion,{ width:130, elevation: 1, backgroundColor: "#3d405b"}]} 
         onPress={this.handleRequest.bind(this)}/>  
         <Button title={"Escanear QR"}
           buttonStyle={{ backgroundColor: 'rgb(255,74,55)', width: 130, elevation: 1, marginTop:20 }}
@@ -174,20 +174,20 @@ class Login extends Component {
   }
   render() {
     let estilos = this.estilo()
-    let bgimage;
+    // let bgimage;
     // console.log("GLOBAL STYLE => "+ global.style)
     // switch (global.style){
-      switch('light'){
-      case 'light':
-        bgimage = require('../../assets/images/yellow_forked_background.png')
-        break;
-      case 'dark':
-        bgimage = require('../../assets/images/yellow_squared_background.png')
-        break;
-      default:
-        bgimage = require('../../assets/images/yellow_forked_background.png')
-        break; 
-    }
+    //   switch('light'){
+    //   case 'light':
+    //     bgimage = require('../../assets/images/yellow_forked_background.png')
+    //     break;
+    //   case 'dark':
+    //     bgimage = require('../../assets/images/yellow_squared_background.png')
+    //     break;
+    //   default:
+    //     bgimage = require('../../assets/images/yellow_forked_background.png')
+    //     break; 
+    // }
 
     const {
       formContainerStyle,
@@ -196,8 +196,8 @@ class Login extends Component {
     } = style;
     const version = 'V0.0.0';
     return (
-      <ScrollView style={estilos.loginBackground}>
-        <ImageBackground source={bgimage} style={{width: '100%'}}>
+      <ScrollView style={[estilos.loginBackground, {backgroundColor: "orange"}]}>
+        <ImageBackground style={{width: '100%'}}>
           <View style={styles.versionPosition}>
             <Text>{version}</Text>
           </View>
@@ -216,28 +216,30 @@ class Login extends Component {
               <View style={{ flex: 1 }}>
                 <View style={formContainerStyle}>
                   <Image style={estilos.login_logo_image} 
-                  // source={require("../../assets/images/LOGO.png")}
+                    source={require('../../assets/images/e_order_logo.png')}
                   />
                   <View style = {viewFontLogin}>
-                    <Text style = {estilos.fontLogin}>Usuario</Text>
+                    <Text style = {[estilos.fontLogin, {fontWeight: "bold"}]}>Usuario</Text>
                   </View>
                   <View style={estilos.fieldStyle}>
                     <TextInput
                       autoCorrect={false}
                       autoCapitalize="none"
                       onChangeText={this.onUsernameChange.bind(this)}
-                      style={estilos.login_textInputStyle}
+                      style={[estilos.login_textInputStyle, {backgroundColor: 'white', color: "#222"}]}
                       value={this.state.username} // Async
                     />
                   </View>
-                  <View style = {viewFontLogin}><Text style = {estilos.fontLogin}>Contraseña</Text></View>
+                  <View style = {viewFontLogin}>
+                    <Text style = {[estilos.fontLogin, {fontWeight: "bold"}]}>Contraseña</Text>
+                  </View>
                   <View style={estilos.fieldStyle}>
                     <TextInput
                       secureTextEntry
                       autoCapitalize="none"
                       autoCorrect={false}
                       onChangeText={this.onPasswordChange.bind(this)}
-                      style={estilos.login_textInputStyle}
+                      style={[estilos.login_textInputStyle, {backgroundColor: 'white', color: "#222"}]}
                     />
                   </View>
                 </View>

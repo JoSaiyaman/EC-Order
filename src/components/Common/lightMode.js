@@ -104,7 +104,7 @@ export default StyleSheet.create({
 
   // Router Navbar
   navBar: {
-    backgroundColor: ColorNeutro,
+    backgroundColor: "darkorange",//ColorNeutro,
     color: ColorDebil,
     fontWeight: "normal"
   },
@@ -115,7 +115,7 @@ export default StyleSheet.create({
     color: 'black'
   },
   login_logo_image: {
-    height: 146,
+    height: 160,
     width: 190,
     marginBottom: 22
   },
@@ -124,7 +124,7 @@ export default StyleSheet.create({
     padding: 6,
     fontSize: 16,
     backgroundColor: ColorNeutro,
-    elevation: 1
+    elevation: 4
   },
 
   // Main Menu
