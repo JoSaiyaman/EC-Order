@@ -30,7 +30,7 @@ export default class CookOrderTray extends React.Component {
 
     getOrderList() {
         this.setState({ loading: true });
-        let cook_token = "VC_5564cede-5f28-47e7-8fad-e3fe047ee2e9"
+        let cook_token = global.alt_space_session_key
         axios
             .get(`/alternative_session/${cook_token}/cook/account_orders/`)
             .then(response => {
@@ -47,7 +47,7 @@ export default class CookOrderTray extends React.Component {
 
     acceptOrder(order_id) {
         this.setState({ loading: true });
-        let cook_token = "VC_5564cede-5f28-47e7-8fad-e3fe047ee2e9"
+        let cook_token = global.alt_space_session_key
         axios
             .put(`/alternative_session/${cook_token}/cook/account_orders/${order_id}/accept/`, {})
             .then(response => {
@@ -65,7 +65,7 @@ export default class CookOrderTray extends React.Component {
 
     rejectOrder(order_id) {
         this.setState({ loading: true });
-        let cook_token = "VC_5564cede-5f28-47e7-8fad-e3fe047ee2e9"
+        let cook_token = global.alt_space_session_key
         axios
             .put(`/alternative_session/${cook_token}/cook/account_orders/${order_id}/reject/`, {})
             .then(response => {
@@ -83,7 +83,7 @@ export default class CookOrderTray extends React.Component {
 
     readyOrder(order_id) {
         this.setState({ loading: true });
-        let cook_token = "VC_5564cede-5f28-47e7-8fad-e3fe047ee2e9"
+        let cook_token = global.alt_space_session_key
         axios
             .put(`/alternative_session/${cook_token}/cook/account_orders/${order_id}/ready/`, {})
             .then(response => {

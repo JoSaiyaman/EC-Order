@@ -194,6 +194,15 @@ export default StyleSheet.create({
     // alignSelf: 'flex-end',
     justifyContent: 'flex-start'
   },
+
+  //****************************Generales********
+  floating_icon:{
+
+    position:"absolute",
+    left: 10,
+    top: 10
+
+  },
   articulo: {
     borderBottomWidth: 0.5,
     borderColor: 'rgba(0,0,0,0.7)',

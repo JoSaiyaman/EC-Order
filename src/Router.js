@@ -15,6 +15,8 @@ import Login from './components/Login';
 import HomeScreen from './components/admin/HomeScreen';
 import adminMenu from './components/admin/adminMenu';
 import CookOrderTray from './components/cook/CookOrderTray';
+
+import ScanQr from './components/ScanQr';
 import WaiterSummary from './components/waiter/WaiterSummary';
 import WaiterSummaryAccountDetail from './components/waiter/WaiterSummaryAccountDetail';
 import adminDetalleArticulo from './components/admin/adminDetalleArticulo';
@@ -27,6 +29,7 @@ import dinersDetalleArticulo from './components/diners/dinersDetalleArticulo';
 import dinersOrden from './components/diners/dinersOrden';
 import dinersReview from './components/diners/dinersReview.js';
 import dinersCuenta from './components/diners/dinersCuenta';
+
 
 export default class RouterComponent extends React.Component {
     constructor(props) {
@@ -239,6 +242,17 @@ export default class RouterComponent extends React.Component {
                         component={CookOrderTray}
                         initial                        
                     />
+                </Stack>
+
+                <Stack
+                    key="scan"
+                >
+
+                    <Scene
+                        hideNavBar
+                        key="scanQr"
+                        component={ScanQr} />
+
                 </Stack>
 
                 <Stack

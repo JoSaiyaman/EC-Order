@@ -17,7 +17,6 @@ import AsyncStorage from '@react-native-community/async-storage';
 import light from './Common/lightMode';
 import dark from './Common/DarkMode';
 
-
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -170,6 +169,9 @@ class Login extends Component {
         <Button title={"<Login as cook>"}
           buttonStyle={{ backgroundColor: 'rgb(255,74,55)', width: 130, elevation: 1 }}
           onPress={() => Actions.cook()} />
+        <Button title={"Escanear QR"}
+          buttonStyle={{ backgroundColor: 'rgb(255,74,55)', width: 130, elevation: 1, marginTop:20 }}
+          onPress={() => Actions.scan()} /> 
         <Button title={"<Login as waiter>"}
         buttonStyle={{ backgroundColor: 'rgb(255,74,55)', width: 130, elevation: 1 }}
         onPress={() => Actions.waiter()} />  
