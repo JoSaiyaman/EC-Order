@@ -1,7 +1,11 @@
 import { StyleSheet } from 'react-native';
 
 let ColorFuerte = 'rgb(255,74,55)';
-let ColorDebil = 'rgb(255,255,141)';
+let ColorNeutro = 'rgb(255,166,1)';
+let ColorNeutroOscuro = 'rgba(255,166,1,0.5)';
+let ColorDebil = 'rgb(255,255,255)';
+let ColorDebilOscuro = 'rgb(200,200,200)';
+let ColorAzul = 'rgb(122,121,225)';
 
 export default StyleSheet.create({
   loginBackground: {
@@ -61,6 +65,11 @@ export default StyleSheet.create({
     backgroundColor: 'rgb(18, 56, 79)',
     justifyContent: "space-around"
   },
+  container2: {
+    flex: 1,
+    backgroundColor: ColorDebilOscuro,
+    justifyContent: "space-around"
+  },
   header:{
     alignItems: 'center',
     justifyContent: 'center',
@@ -95,9 +104,9 @@ export default StyleSheet.create({
   
   // Router Navbar
   navBar: {
-      backgroundColor: 'rgb(18, 56, 79)',
-      color: "#FFF",
-      fontWeight: "normal"
+    backgroundColor: 'rgb(18, 56, 79)',
+    color: "#FFF",
+    fontWeight: "normal"
   },
   
   //login
@@ -121,11 +130,12 @@ export default StyleSheet.create({
   // Main Menu
   profilepicWrap:{
     marginTop:1,
-      width: 180,
-      height: 180,
-      borderRadius: 100,
-      borderColor: 'rgba(135,206,235, 0.4)',
-      borderWidth: 8,
+    width: 180,
+    height: 180,
+    borderRadius: 100,
+    borderColor: ColorFuerte,
+    backgroundColor: ColorDebil,
+    borderWidth: 8,
   },
   opcion:{
     height: 80,
@@ -150,9 +160,17 @@ export default StyleSheet.create({
     fontWeight: 'bold',
   },
   tabMenu:{
-    padding: 13,
+    padding: 18,
     alignItems: 'center',
     borderRadius: 20,
+    shadowColor: 'rgba(0,0,0, .4)', // IOS
+    shadowOffset: { height: 1, width: 1 }, // IOS
+    shadowOpacity: 1, // IOS
+    shadowRadius: 1, //IOS
+    elevation: 12, // Android
+  },
+  colorBotonesAccion:{
+    backgroundColor: ColorFuerte
   },
 
   // Menu (de comida xd)
@@ -179,5 +197,68 @@ export default StyleSheet.create({
     left: 10,
     top: 10
 
-  }
+  },
+  articulo: {
+    borderBottomWidth: 0.5,
+    borderColor: 'rgba(0,0,0,0.7)',
+    padding: 10
+  },
+
+  // detalle de producto
+  
+  titulo1:{
+    alignItems: 'center',
+    textAlign: 'center',
+    justifyContent: 'center',
+    fontWeight: 'bold',
+    fontSize: 22,
+  },
+  titulo2:{
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+  subtitulo1:{
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+  contenido:{
+    flex: 1,
+    padding: 6,
+    fontSize: 16,
+  },
+  descriptionArea: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 20
+  },
+  descriptionText: {
+    color: 'grey',
+    fontStyle: 'italic',
+    textAlign: 'center',
+    fontSize: 16
+  },
+  complementNoSelect: {
+    fontWeight: "bold"
+  },
+  complementSelect:{
+    fontWeight: "bold",
+    color: ColorAzul
+  },
+  textButton:{
+    color: '#fff', 
+    padding: 9, 
+    borderRadius: 6, 
+    backgroundColor: 'rgb(255,74,55)',
+    elevation: 8
+  },
+  listComplementos:{
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center"
+}
 });

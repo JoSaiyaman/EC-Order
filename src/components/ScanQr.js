@@ -29,13 +29,13 @@ export default class ScanQr extends Component{
         super(props);
         const {height, width} = Dimensions.get("window");
         this.heigth = height;
-        this.width = width;
-
+        this.width = width;        
         this.state = {
 
             loginProcessing:false
 
-        }
+        };
+        this.scan = true;
 
     }
 
@@ -133,6 +133,12 @@ export default class ScanQr extends Component{
     /*********************Callbacks*** */
     onQrRead(data){
 
+        if(!this.scan){
+
+            return;
+
+        }
+        this.scan = false;
         this.setState({
 
             loginProcessing:true
@@ -140,21 +146,39 @@ export default class ScanQr extends Component{
         });
         let url = `/alternative_session/${data.data}`;
 
-        console.log(url);
+        //console.log(url);
         axios
             .get(url)
             .then((response)=>{
 
                 global.session_mode = response.data.session_mode;
-                global.session_key = response.data.session_key;
+                global.alt_space_session_key  = response.data.session_key;
                 global.active_account = response.data.active_account;
-                Alert.alert("Bienvenido");
-                console.log(response);
+                Alert.alert("Bienvenido");                
+
+                console.log(global.session_mode);
+                console.log(global.alt_space_session_key);
+                console.log(global.active_account);
                 this.setState({
 
                     loginProcessing:false
 
-                })
+                });
+
+                if(global.session_mode == "COOK"){
+
+                    Actions.cook();
+
+                }else if (global.session_mode == "WAITER"){
+
+                    Actions.waiter();
+
+                }else if (global.session_mode == "SPACE"){
+
+                    Actions.diners();
+
+                }
+                this.scan = true;
 
             })
             .catch((reason)=>{
@@ -164,7 +188,8 @@ export default class ScanQr extends Component{
 
                     loginProcessing:false
 
-                })
+                });
+                this.scan = true;
 
             })
 

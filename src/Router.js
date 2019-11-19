@@ -15,7 +15,19 @@ import Login from './components/Login';
 import HomeScreen from './components/admin/HomeScreen';
 import adminMenu from './components/admin/adminMenu';
 import CookOrderTray from './components/cook/CookOrderTray';
+
 import ScanQr from './components/ScanQr';
+import WaiterSummary from './components/waiter/WaiterSummary';
+import WaiterSummaryAccountDetail from './components/waiter/WaiterSummaryAccountDetail';
+import adminDetalleArticulo from './components/admin/adminDetalleArticulo';
+import adminComplementos from './components/admin/adminComplementos';
+import adminNuevoArticulo from './components/admin/adminNuevoArticulo';
+import dinersMenu from './components/diners/dinersMenu';
+import dinersDetalleArticulo from './components/diners/dinersDetalleArticulo';
+import dinersOrden from './components/diners/dinersOrden';
+import dinersReview from './components/diners/dinersReview.js';
+import dinersCuenta from './components/diners/dinersCuenta';
+
 
 export default class RouterComponent extends React.Component {
     constructor(props) {
@@ -42,13 +54,13 @@ export default class RouterComponent extends React.Component {
             global.userId = await AsyncStorage.getItem("A_USUARIO")
             switch (global.style) {
                 case 'dark':
-                    this.setState({back_color: 'rgb(13, 97, 114)'});
+                    this.setState({back_color: 'rgb(122,121,225)'});
                     break;
                 case 'light': 
-                    this.setState({back_color: '#1AA6A8'});
+                    this.setState({back_color: 'rgb(255,166,1)'});
                     break;
                 default: 
-                    this.setState({back_color: '#1AA6A8'});
+                    this.setState({back_color: 'rgb(255,166,1)'});
                     break;
             }
         } catch(e) {
@@ -60,13 +72,13 @@ export default class RouterComponent extends React.Component {
         if (global.skip) {
             switch (global.style) {
                 case 'dark':
-                    this.setState({back_color: 'rgb(13, 97, 114)'});
+                    this.setState({back_color: 'rgb(122,121,225)'});
                     break;
                 case 'light': 
-                    this.setState({back_color: '#1AA6A8'});
+                    this.setState({back_color: 'rgb(255,166,1)'});
                     break;
                 default: 
-                    this.setState({back_color: '#1AA6A8'});
+                    this.setState({back_color: 'rgb(255,166,1)'});
                     break;
             }
             global.skip = false;
@@ -134,9 +146,21 @@ export default class RouterComponent extends React.Component {
                         key="admin_menu"
                         component={adminMenu}          
                     />
-
-
-
+                    <Scene
+                        title="Configuración de Artículo"
+                        key="admin_detalle_articulo"
+                        component={adminDetalleArticulo}          
+                    />
+                    <Scene
+                        title="Complementos"
+                        key="admin_complementos"
+                        component={adminComplementos}          
+                    />
+                    <Scene
+                        title="Nuevo Artículo"
+                        key="admin_nuevo_articulo"
+                        component={adminNuevoArticulo}          
+                    />
 
                     {/* Configuración */}
                     {/* <Scene
@@ -155,8 +179,44 @@ export default class RouterComponent extends React.Component {
                         component={Pantalla}
                     /> */}
 
+                </Stack>
 
-
+                <Stack
+                    key="diners"
+                    type="reset"
+                    style={style.titleStyle}
+                >
+                    <Scene
+                        hideNavBar
+                        title=""
+                        key="diners_menu"
+                        component={dinersMenu}
+                        initial                        
+                    />
+                    <Scene
+                        hideNavBar
+                        title=""
+                        key="diners_detalle_articulo"
+                        component={dinersDetalleArticulo}              
+                    />
+                    <Scene
+                        hideNavBar
+                        title=""
+                        key="diners_orden"
+                        component={dinersOrden}              
+                    />
+                    <Scene
+                        hideNavBar
+                        title=""
+                        key="diners_review"
+                        component={dinersReview}
+                    />
+                    <Scene
+                        hideNavBar
+                        title=""
+                        key="diners_cuenta"
+                        component={dinersCuenta}
+                    />
                 </Stack>
 
                 <Stack
@@ -174,15 +234,32 @@ export default class RouterComponent extends React.Component {
                 </Stack>
 
                 <Stack
-                    key="scan"                    
+                    key="scan"
+                >
+
+                    <Scene
+                        hideNavBar
+                        key="scanQr"
+                        component={ScanQr} />
+
+                </Stack>
+
+                <Stack
+                    key="waiter"
+                    type="reset"
                     style={style.titleStyle}
                 >
                     <Scene
                         hideNavBar
-                        title="Bandeja de ordenes"
-                        key="scanQr"
-                        component={ScanQr}
+                        title="Cuentas abiertas"
+                        key="waiter_open_account_summary"
+                        component={WaiterSummary}
                         initial                        
+                    />
+                    <Scene
+                        title="Ordenes por entregar"
+                        key="waiter_summary_account_detail"
+                        component={WaiterSummaryAccountDetail}                      
                     />
                 </Stack>
 
@@ -211,5 +288,4 @@ const style = StyleSheet.create({
         width: 200
     }
 });  
-  
-// export default RouterComponent;
+
