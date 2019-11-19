@@ -67,7 +67,7 @@ export default StyleSheet.create({
   },
   container2: {
     flex: 1,
-    backgroundColor: ColorNeutroOscuro,
+    backgroundColor: "white",//ColorNeutroOscuro,
     justifyContent: "space-around"
   },
   header:{
@@ -156,18 +156,23 @@ export default StyleSheet.create({
   },
   botonMenuText:{
     color:'#fff',
+    // color:'#63564f',
     fontSize: 18,
     fontWeight: 'bold',
   },
   tabMenu:{
     padding: 18,
     alignItems: 'center',
-    borderRadius: 20,
-    shadowColor: 'rgba(0,0,0, .4)', // IOS
-    shadowOffset: { height: 1, width: 1 }, // IOS
-    shadowOpacity: 1, // IOS
-    shadowRadius: 1, //IOS
-    elevation: 12, // Android
+    borderRadius: 10,
+    backgroundColor: "#f0d3c2",
+    marginVertical: 2,
+    elevation: 3
+
+    // shadowColor: 'rgba(0,0,0, .4)', // IOS
+    // shadowOffset: { height: 1, width: 1 }, // IOS
+    // shadowOpacity: 1, // IOS
+    // shadowRadius: 1, //IOS
+    // elevation: 12, // Android
   },
   colorBotonesAccion:{
     backgroundColor: ColorFuerte

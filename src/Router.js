@@ -20,6 +20,8 @@ import WaiterSummaryAccountDetail from './components/waiter/WaiterSummaryAccount
 import adminDetalleArticulo from './components/admin/adminDetalleArticulo';
 import adminComplementos from './components/admin/adminComplementos';
 import adminNuevoArticulo from './components/admin/adminNuevoArticulo';
+import AdminAccountReport from './components/admin/AdminAccountReport';
+import AdminFeedbackReport from './components/admin/AdminFeedbackReport';
 import dinersMenu from './components/diners/dinersMenu';
 import dinersDetalleArticulo from './components/diners/dinersDetalleArticulo';
 import dinersOrden from './components/diners/dinersOrden';
@@ -57,7 +59,7 @@ export default class RouterComponent extends React.Component {
                     this.setState({back_color: 'rgb(255,166,1)'});
                     break;
                 default: 
-                    this.setState({back_color: 'rgb(255,166,1)'});
+                    this.setState({back_color: '#ff8c00'}); //'rgb(255,166,1)'
                     break;
             }
         } catch(e) {
@@ -158,7 +160,16 @@ export default class RouterComponent extends React.Component {
                         key="admin_nuevo_articulo"
                         component={adminNuevoArticulo}          
                     />
-
+                    <Scene
+                        title="Cuentas pasadas"
+                        key="admin_account_report"
+                        component={AdminAccountReport}          
+                    />
+                    <Scene
+                        title="Reporte de retroalimentación"
+                        key="admin_feedback_report"
+                        component={AdminFeedbackReport}          
+                    />
                     {/* Configuración */}
                     {/* <Scene
                         title=""

@@ -214,6 +214,7 @@ export default class adminMenu extends React.Component {
                 <View style={estilos.container} >
                     <View style={[estilos.fieldStyle, {padding: 20}]}>
                         <TextInput
+                            placeholder="Ingrese el nombre de la sección..."
                             autoCorrect={true}
                             autoCapitalize="none"
                             onChangeText={this.onSectionNameChange.bind(this)}

@@ -57,11 +57,11 @@ export default class dinersMenu extends React.Component {
     // console.log(seccion.item.is_active)
     if(seccion.item.is_active){
       return(
-      <TouchableOpacity style={[estilos.tabMenu,{backgroundColor: 'rgb(122,121,225)'}]} onPress={() => {
+      <TouchableOpacity style={[estilos.tabMenu]} onPress={() => {
         this.changeSection(seccion.item)
         this.forceUpdate()
         }}>
-          <Text style={estilos.botonMenuText}>{seccion.item.description}</Text>
+          <Text style={[estilos.botonMenuText, {color: "#63564f"}]}>{seccion.item.description}</Text>
       </TouchableOpacity>
       );
     }

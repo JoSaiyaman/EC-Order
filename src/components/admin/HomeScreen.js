@@ -82,11 +82,6 @@ export default class HomeScreen extends React.Component {
               </TouchableOpacity>
             </View>
             <View style={estilos.opcion}>
-              <TouchableOpacity style={[estilos.botonMenu,{backgroundColor: 'rgb(112,151,245)'}]}>
-                <Text  style={estilos.botonMenuText}> Manejar restaurante </Text>
-              </TouchableOpacity>
-            </View>
-            <View style={estilos.opcion}>
               <TouchableOpacity style={[estilos.botonMenu,{backgroundColor: 'rgb(68,114,196)'}]}>
                 <Text  style={estilos.botonMenuText}> Manejar espacios </Text>
               </TouchableOpacity>
@@ -97,8 +92,19 @@ export default class HomeScreen extends React.Component {
               </TouchableOpacity>
             </View>
             <View style={estilos.opcion}>
-              <TouchableOpacity style={[estilos.botonMenu,{backgroundColor: 'rgb(45,203,37)'}]}>
-                <Text  style={estilos.botonMenuText}> Reportes </Text>
+              <TouchableOpacity
+                style={[estilos.botonMenu,{backgroundColor: 'rgb(45,203,37)'}]}
+                onPress={() => Actions.admin_account_report()}
+              >
+                <Text  style={estilos.botonMenuText}> Historial de cuentas </Text>
+              </TouchableOpacity>
+            </View>
+            <View style={estilos.opcion}>
+              <TouchableOpacity
+                style={[estilos.botonMenu,{backgroundColor: 'rgb(45,203,37)'}]}
+                onPress={() => Actions.admin_feedback_report()}
+              >
+                <Text  style={estilos.botonMenuText}> Reporte retroalimentación </Text>
               </TouchableOpacity>
             </View>
             <View style={estilos.opcion}>
