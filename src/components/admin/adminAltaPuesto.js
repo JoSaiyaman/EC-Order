@@ -92,7 +92,8 @@ export default class adminAltaPuesto extends Component{
                 flex:2,
                 justifyContent:"center",
                 alignItems:"center",
-                backgroundColor:"rgb(255,74,55)"
+                backgroundColor:"rgb(255,74,55)",
+                width: 30
 
             },
 
@@ -248,9 +249,9 @@ export default class adminAltaPuesto extends Component{
 
             main:{
 
-                height:this.heigth*0.08,
-                width:this.width,
-                padding:this.padding,
+                height:60,
+                width:this.width -40,
+                // padding:this.padding,
                 flexDirection:"row",
                 marginBottom:20
 
@@ -269,7 +270,7 @@ export default class adminAltaPuesto extends Component{
 
                 flex:4,                
                 justifyContent:"center",
-                alignItems:"center"
+                alignItems:"flex-end"
 
             },
 
@@ -306,7 +307,7 @@ export default class adminAltaPuesto extends Component{
 
                     <QRCode
                         value={puesto.position_qr_code}
-                        size={80}
+                        size={60}
                          />
 
                 </TouchableOpacity>
@@ -345,7 +346,7 @@ export default class adminAltaPuesto extends Component{
 
         return(
 
-            <View style={{flex:1}}>
+            <View style={{flex:1, alignItems: "center"}}>
 
                 <View style={this.style.headers}>
                     
@@ -361,7 +362,7 @@ export default class adminAltaPuesto extends Component{
 
                     </Text>
 
-                    <Text style={{flex:4, ...this.style.header_center}}>
+                    <Text style={{flex:3, ...this.style.header_center}}>
 
                         QR
 
@@ -370,7 +371,7 @@ export default class adminAltaPuesto extends Component{
 
                 </View>
 
-                <View style={this.style.add_space_bar}>
+                <View style={[this.style.add_space_bar]}>
 
                     <TextInput
                         style={this.style.add_field}
@@ -402,7 +403,7 @@ export default class adminAltaPuesto extends Component{
 
                     </Picker>
 
-                    <View style={{flex:2}}>
+                    <View style={{flex:1}}>
 
 
 

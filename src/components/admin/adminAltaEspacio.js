@@ -88,8 +88,8 @@ export default class adminAltaEspacio extends Component{
                 flex:1,
                 justifyContent:"center",
                 alignItems:"center",
-                backgroundColor:"rgb(255,74,55)"
-
+                backgroundColor:"rgb(255,74,55)",
+                height: 40
             },
 
             headers:{
@@ -213,45 +213,24 @@ export default class adminAltaEspacio extends Component{
          */
 
          let style = StyleSheet.create({
-
             main:{
-
-                height:this.heigth*0.08,
-                width:this.width,
+                height: 60,
+                width:this.width - 40,
                 padding:this.padding,
                 flexDirection:"row",
-                marginBottom:20
-
+                marginBottom:20,
             },
-
             name:{
-
                 flex: 5,
                 fontSize:18,
-                textAlign:"center",
+                textAlign:"left",
                 textAlignVertical:"center"
-
             },
-
             qr:{
-
                 flex:3,
-                
                 justifyContent:"center",
-                alignItems:"center"
-
-            },
-
-            delete:{
-
-                flex:2,
-                backgroundColor:"rgb(255,74,55)",
-                justifyContent:"center",
-                alignItems:"center"
-
+                alignItems:"flex-end"
             }
-
-
          });
 
          let onTouchQR = ()=>{
@@ -261,62 +240,37 @@ export default class adminAltaEspacio extends Component{
          }
 
         return(
-
             <View style={style.main}>
-
                 <Text style={style.name}>
-
                     {mesa.name}
-
                 </Text>
-
                 <TouchableOpacity style={style.qr}
                     onPress={()=>onTouchQR()}
-
                 >
-
                     <QRCode
                         value={mesa.space_qr_code}
-                        size={80}
-                         />
-
+                        size={60}
+                    />
                 </TouchableOpacity>
-
-
             </View>
-
-
         );
-
     }
 
     renderEmpty(){
-
         return (
-            
             <Text style={{textAlign:"center", textAlignVertical:"center"}}>
-
                 {
-
                     this.state.loading ? "Cargando..." : "No hay mesas disponibles"
-
-
                 }
-
             </Text>
-
         )
-
-
     }
 
     render(){
-
         let dataToRender = this.state.espacios;
 
         return(
-
-            <View style={{flex:1}}>
+            <View style={{flex:1, alignItems: "center"}}>
 
                 <View style={this.style.add_space_bar}>
 
@@ -373,11 +327,7 @@ export default class adminAltaEspacio extends Component{
                     }}
                     keyExtractor={(item)=>item.id}
                     extraData={dataToRender}
-
-                
                 />  
-
-
             </View>                
 
         );

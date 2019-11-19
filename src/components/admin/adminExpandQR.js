@@ -55,7 +55,7 @@ export default adminExpandQR = (props)=>{
 
             <QRCode
                 value={props.value}
-                size={width*0.6} />
+                size={width*0.8} />
 
         </View>
 

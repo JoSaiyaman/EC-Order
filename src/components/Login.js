@@ -166,15 +166,9 @@ class Login extends Component {
         <Button title={"Login"} 
         buttonStyle={[estilos.colorBotonesAccion,{ width:130, elevation: 1}]} 
         onPress={this.handleRequest.bind(this)}/>  
-        <Button title={"<Login as cook>"}
-          buttonStyle={{ backgroundColor: 'rgb(255,74,55)', width: 130, elevation: 1 }}
-          onPress={() => Actions.cook()} />
         <Button title={"Escanear QR"}
           buttonStyle={{ backgroundColor: 'rgb(255,74,55)', width: 130, elevation: 1, marginTop:20 }}
-          onPress={() => Actions.scan()} /> 
-        <Button title={"<Login as waiter>"}
-        buttonStyle={{ backgroundColor: 'rgb(255,74,55)', width: 130, elevation: 1 }}
-        onPress={() => Actions.waiter()} />  
+          onPress={() => Actions.scan()} />
       </View>
     );
   }
@@ -250,13 +244,6 @@ class Login extends Component {
                 <View style={buttonContainerStyle}>
                   {this.renderButton()}
                 </View>
-                {/* ==============temp: ditto del temp de arriba  */}
-                <View style={buttonContainerStyle}>
-                  <Button title={"Diner"} 
-                  buttonStyle={[estilos.colorBotonesAccion,{ width:130, elevation: 1}]} 
-                  onPress={this.dinerLogin.bind(this)}/>  
-                </View>
-                {/* ==========================================temp */}
               </View>
             </View>
           </View>
